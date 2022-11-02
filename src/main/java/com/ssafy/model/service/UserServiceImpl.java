@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional
 	public void insert(User user) {
+		System.out.println("insert들어옹");
 		User find = dao.search(user.getId());
 		if(find != null) {
 			throw new RuntimeException("이미 등록된 id 입니다.");

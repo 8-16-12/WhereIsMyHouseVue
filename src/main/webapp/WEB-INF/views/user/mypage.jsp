@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%@ include file="/include/header.jsp" %>
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <!--search overlay end -->
 <section class="section-padding">
   <div class="container">
     <h2 style="font-family: Open Sans">${user.name}님 회원정보</h2>
     
-    <form id="updateform" action="${root}/update.do">
+    <form id="updateform" action="${root}/user/update">
     
     <div class="border 1px solid mt-3">
       <div class="col-md-12 mb-3 mt-2">
@@ -48,12 +48,12 @@
       </div>
     </div>
     <div class="text-center mt-5">
-      <a class="btn btn-primary" href="${root}/delete.do?id=${user.id}" role="button"> 탈퇴 </a>
-      <a class="btn btn-primary" href="${root}/index.jsp" role="button"> 확인  </a>
+      <a class="btn btn-primary" href="${root}/user/delete?id=${user.id}" role="button"> 탈퇴 </a>
+      <a class="btn btn-primary" href="${root}/index" role="button"> 확인  </a>
       <button type="submit" class="btn btn-primary" id="regist">수정</button>
     </div>
     
     </form>
   </div>
 </section>
-<%@ include file="/include/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>

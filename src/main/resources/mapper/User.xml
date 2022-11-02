@@ -5,7 +5,7 @@
 <mapper namespace="com.ssafy.model.dao.UserDao">
 	
 	<insert id="insert"	parameterType="User">
-		INSERT INTO users(id, pass, name, birth, email, addr, addr2)
+		INSERT INTO user(id, pass, name, birth, email, addr, addr2)
 		VALUES(#{id}, #{pass}, #{name}, #{birth}, #{email}, #{addr}, #{addr2})
 	</insert>
 	
@@ -24,11 +24,11 @@
 	
 	<select id="search"	parameterType="string"	resultType="User">
 		SELECT *
-		FROM users WHERE id = #{id}
+		FROM user WHERE id = #{id}
 	</select>
 	
 	<delete id="delete"	parameterType="string">
-		delete from users
+		delete from user
 		where id = #{id}
 	</delete>
 	

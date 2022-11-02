@@ -8,7 +8,7 @@
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mt-3 mb-3" style="font-family: Open Sans">회원가입</h4>
-        <form id="insert-form" method="get" action="${root}/insert">
+        <form id="insert-form" method="post" action="${root}/user/insert">
 
           <div class="mb-3">
              <label for="id">아이디</label>

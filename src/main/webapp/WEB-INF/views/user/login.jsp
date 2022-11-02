@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 		<div class="container">
-          <form method="post" action="${root}/login">
+          <form method="post" action="${root}/user/login">
             <div class="mb-3 mt-3">
               <label for="text" class="form-label">아이디:</label>
               <input type="text" class="form-control" id="id" name="id" placeholder="아이디" name="아이디">

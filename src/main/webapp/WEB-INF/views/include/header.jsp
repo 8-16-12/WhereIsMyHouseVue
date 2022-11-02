@@ -80,8 +80,8 @@
                       </li>
                   	</ul>
                   	<ul class="row justify-content-center">
-						<a class="btn btn-primary mx-1" href="${root}/search?id=${userinfo.id}" role="button"> 내 정보 확인 </a>
-						<a class="btn btn-primary" href="${root}/logout" role="button"> 로그아웃 </a>
+						<a class="btn btn-primary mx-1" href="${root}/user/search?id=${userinfo.id}" role="button"> 내 정보 확인 </a>
+						<a class="btn btn-primary" href="${root}/user/logout" role="button"> 로그아웃 </a>
 					</ul>
 					
 					</c:otherwise>

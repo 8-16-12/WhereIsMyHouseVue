@@ -1,5 +1,6 @@
 package com.ssafy.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,12 +26,11 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("/insert")
-	public void insert() {
-		System.out.println("웨 않대ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ");
+	public void insertForm() {
 	}
 	
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute User user, Model model) {	
+	public String insert(User user) {
 		userService.insert(user);
 		return "redirect:/index";
 	}
@@ -42,17 +42,36 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(User user, HttpSession session, Model model) {
-		String view = "/user/index";
-		User loginUser = user;
-		if (loginUser != null && user.getPass().equals(loginUser.getPass())) {
-			session.setAttribute("loginUser", loginUser);
+	public String login(User user, HttpServletRequest request, Model model) {
+		String view = "/index";
+		HttpSession session = request.getSession();
+	
+		if (user != null && user.getPass().equals(user.getPass())) {
+			
+			session.setAttribute("userinfo", user);			
+			System.out.println("로그인 왜 안되냐ㅏ아ㅏㅏㅏㅏㅏㅏ");
 			view = "redirect:/";
 		} else {
 			model.addAttribute("msg", "로그인 실패");
 		}
 		
 		return view;
+	}
+	
+	@GetMapping("/search")
+	public String search(User user, HttpServletRequest request) {
+		String id = request.getParameter("id");	
+		User loginuser = userService.search(id);
+		request.setAttribute("user", loginuser);
+		
+		return "user/mypage";
+	}
+	
+	@GetMapping("/logout")
+	public String doLogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 }
