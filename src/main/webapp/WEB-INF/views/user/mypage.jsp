@@ -14,7 +14,7 @@
     <div class="border 1px solid mt-3">
       <div class="col-md-12 mb-3 mt-2">
         <label for="id">아이디 :</label>
-        <input type="text" class="form-control" id="id" name="id" placeholder="" value="${user.id}" required>
+        <input type="text" readonly class="form-control" id="id" name="id" placeholder="" value="${user.id}" required>
       </div>
       
       <div class="col-md-12 mb-3">

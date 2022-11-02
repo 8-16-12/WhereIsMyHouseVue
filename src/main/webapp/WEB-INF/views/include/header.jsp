@@ -23,7 +23,7 @@
       <div class="col-lg-6 text-center">
         <!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="" class="img-fluid w-100"></a> -->
 				<h1>
-          <a href="${root}" class="nav-link">Where Is My House?</a>
+          <a href="${root}/index" class="nav-link">Where Is My House?</a>
         </h1>
       </div>
     </div>

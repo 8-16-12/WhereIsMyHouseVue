@@ -15,7 +15,7 @@
 			<if test="pass != null">pass = #{pass},</if>
 			<if test="name != null">name = #{name},</if>
 			<if test="birth != null">birth = #{birth},</if>
-			<if test="email != email">email = #{email},</if>
+			<if test="email != null">email = #{email},</if>
 			<if test="addr != null">addr = #{addr},</if>
 			<if test="addr2 != null">addr2 = #{addr2},</if>
 		</trim>

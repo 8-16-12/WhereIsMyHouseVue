@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional
 	public void delete(String id) {
+		System.out.println("delete................................");
 		dao.delete(id);
 	}
 
