@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/header.jsp"%>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
 </head>
 <body>
 	<div class="container p-4">
@@ -57,4 +57,4 @@
 		<h4 class="text-center mt-3 mb-3" style="font-family: Open Sans"> 해당 지역 데이터가 없습니다! </h4>
 	</div>
 	<%-- 출력 내용 --%>
-	<%@ include file="/include/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

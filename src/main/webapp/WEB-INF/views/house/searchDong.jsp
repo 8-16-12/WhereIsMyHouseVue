@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-<%@ include file="/include/header.jsp"%>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
 <title>아파트 매매 내역 검색 : Where is My House?</title>
 </head>
 
@@ -152,12 +152,12 @@
 
 	        document.querySelector("#list-btn").addEventListener("click", function () {
 				let form = document.querySelector("#form-deal");
-                form.setAttribute("action", "${root}/searchDong.do");
+                form.setAttribute("action", "${root}/searchDong");
                 form.submit();
 	        });
         </script> 
         </main>
-			<%@ include file="/include/footer.jsp"%>
+			<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 		</div>
 	</div>
 </body>

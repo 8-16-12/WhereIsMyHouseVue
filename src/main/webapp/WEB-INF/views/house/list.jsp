@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+	import="com.ssafy.dto.*"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/header.jsp"%>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
 </head>
 <body>
 	<div class="container p-4">
@@ -127,4 +129,4 @@
 		</table>
 	</div>
 	<%-- 출력 내용 --%>
-	<%@ include file="/include/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

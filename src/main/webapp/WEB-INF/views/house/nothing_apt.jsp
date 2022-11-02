@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/header.jsp"%>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
 </head>
 <body>
 	<div class="container p-4">
@@ -14,4 +14,4 @@
 		<h5 class="text-center mt-5 mb-5" style="font-family: Open Sans"> 아파트 이름을 다시 확인해주세요! </h2>
 	</div>
 	<%-- 출력 내용 --%>
-	<%@ include file="/include/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

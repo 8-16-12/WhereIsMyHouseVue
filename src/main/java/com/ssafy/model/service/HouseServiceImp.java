@@ -1,21 +1,19 @@
 package com.ssafy.model.service;
 
-import java.sql.SQLException;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.dto.House;
 import com.ssafy.model.dao.HouseDao;
-import com.ssafy.model.dao.HouseDaoImp;
 
+@Service
 public class HouseServiceImp implements HouseService {
-	private static HouseService instance = new HouseServiceImp();
-	private HouseDao dao = HouseDaoImp.getInstance();
-	
-	private HouseServiceImp() {}
-	public static HouseService getInstance() {
-		return instance;
-	};
-	
+	@Autowired
+	private HouseDao dao;
+
 	/*
 	@Override
 	public void insert(House house) throws SQLException {
@@ -28,25 +26,26 @@ public class HouseServiceImp implements HouseService {
 	}
 	*/
 	
-	@Override
-	public House search(int no) throws SQLException {
+	@Transactional
+	public House search(int no) {
 		return dao.search(no);
 	}
 
-	@Override
-	public List<House> searchAll() throws SQLException {
+	@Transactional
+	public List<House> searchAll() {
 		return dao.searchAll();
 	}
 
-	@Override
-	public List<House> searchApt(String aptName) throws SQLException {
+	@Transactional
+	public List<House> searchApt(String aptName) {
 		return dao.searchApt(aptName);
 	}
-	@Override
-	public List<House> searchDong(String sidoName, String gugunName, String dongName)
-			throws SQLException {
-		return dao.searchDong(sidoName, gugunName, dongName);
-	}
+
+	
+//	@Transactional
+//	public List<House> searchDong(String sidoName, String gugunName, String dongName)
+//		return dao.searchDong(sidoName, gugunName, dongName);
+//	}
 	/*
 	@Override
 	public void remove(int no) throws SQLException {
@@ -54,8 +53,8 @@ public class HouseServiceImp implements HouseService {
 	}
 	*/
 
-	@Override
-	public String aptName2DongCode(String aptName) throws SQLException {
+	@Transactional
+	public String aptName2DongCode(String aptName) {
 		return dao.aptName2DongCode(aptName);
 	}
 
