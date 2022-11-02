@@ -13,7 +13,7 @@
 <html lang="en">
 
 <head>
-<%@ include file="/include/front.jsp" %>
+<%@ include file="/WEB-INF/views/include/front.jsp" %>
 </head>
 <body>
 
@@ -40,6 +40,6 @@
 </footer>
 <!--footer end-->
 
-<%@ include file="/include/back.jsp" %>
+<%@ include file="/WEB-INF/views/include/back.jsp" %>
 </body>
 </html>

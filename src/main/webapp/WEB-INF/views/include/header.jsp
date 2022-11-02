@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-<%@ include file="/include/front.jsp" %>
+<%@ include file="/WEB-INF/views/include/front.jsp" %>
 
 <script>
 	<c:if test="${not empty msg_login}">
@@ -111,6 +111,6 @@
 </div>
 <!-- search overlay end -->
   
-<%@ include file="/include/back.jsp" %>
+<%@ include file="/WEB-INF/views/include/back.jsp" %>
 </body>
 </html>

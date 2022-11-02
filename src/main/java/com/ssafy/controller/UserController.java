@@ -16,7 +16,7 @@ import com.ssafy.dto.User;
 import com.ssafy.model.service.UserService;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/user")
 public class UserController {
 
 	private final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -24,13 +24,13 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping("")
+	@PostMapping("/insert")
 	public String insert(@ModelAttribute User user, Model model) {	
 		userService.insert(user);
 		return "redirect:/index";
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/login")
 	public String login(User user, HttpSession session, Model model) {
 		String view = "/index";
 		

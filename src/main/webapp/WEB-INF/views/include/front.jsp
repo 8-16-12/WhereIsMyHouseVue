@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="${root}/plugins/owl-carousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="${root}/plugins/magnific-popup/magnific-popup.css">
     <!-- manin stylesheet -->
-    <link rel="stylesheet" href="${root}/css/style.css">
+    <link rel="stylesheet" href="${root}/WEB-INF/views/css/style.css">
 </head>
 </head>
 <body>
