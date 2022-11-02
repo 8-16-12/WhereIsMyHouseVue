@@ -1,43 +1,42 @@
 package com.ssafy.model.service;
 
-import java.sql.SQLException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.dto.Address;
 import com.ssafy.model.dao.AddressDao;
-import com.ssafy.model.dao.AddressDaoImp;
 
+@Service
 public class AddressServiceImp implements AddressService {
-	private static AddressService instance = new AddressServiceImp();
-	private AddressServiceImp() {}
-	public static AddressService getInstance() {
-		return instance;
-	}
-	private AddressDao dao = AddressDaoImp.getInstance();
+	@Autowired
+	private AddressDao dao;
 	
-	@Override
-	public Address Code2Name_Sido(String sidoCode) throws SQLException {
+	
+	@Transactional
+	public Address Code2Name_Sido(String sidoCode) {
 		return dao.Code2Name_Sido(sidoCode);
 	}
 
-	@Override
-	public Address Code2Name_Gugun(String gugunCode) throws SQLException {
+	@Transactional
+	public Address Code2Name_Gugun(String gugunCode) {
 		return dao.Code2Name_Gugun(gugunCode);
 	}
 
-	@Override
-	public Address Code2Name_Dong(String dongCode) throws SQLException {
+	@Transactional
+	public Address Code2Name_Dong(String dongCode) {
 		return dao.Code2Name_Dong(dongCode);
 	}
-	@Override
-	public Address Name2Code_Sido(String sidoName) throws SQLException {
+	@Transactional
+	public Address Name2Code_Sido(String sidoName) {
 		return dao.Name2Code_Sido(sidoName);
 	}
-	@Override
-	public Address Name2Code_Gugun(String gugunName) throws SQLException {
+	@Transactional
+	public Address Name2Code_Gugun(String gugunName) {
 		return dao.Name2Code_Gugun(gugunName);
 	}
-	@Override
-	public Address Name2Code_Dong(String dongName) throws SQLException {
+	@Transactional
+	public Address Name2Code_Dong(String dongName) {
 		return dao.Name2Code_Dong(dongName);
 	}
 }

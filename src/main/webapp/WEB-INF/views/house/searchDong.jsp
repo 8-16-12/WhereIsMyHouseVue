@@ -152,7 +152,7 @@
 
 	        document.querySelector("#list-btn").addEventListener("click", function () {
 				let form = document.querySelector("#form-deal");
-                form.setAttribute("action", "${root}/searchDong");
+                form.setAttribute("action", "${root}/house/searchDong");
                 form.submit();
 	        });
         </script> 

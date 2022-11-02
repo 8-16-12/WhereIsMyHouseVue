@@ -12,7 +12,7 @@ public interface HouseService {
 	
 	List<House> searchAll();
 	List<House> searchApt(String aptName);
-	//List<House> searchDong(Map<String, String, String> map);
+	List<House> searchDong(String sidoName, String gugunName, String dongName);
 	
 	String aptName2DongCode(String aptName);
 	//void remove(int no) throws SQLException;

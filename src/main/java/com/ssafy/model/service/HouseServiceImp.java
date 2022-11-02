@@ -1,6 +1,8 @@
 package com.ssafy.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,10 +44,15 @@ public class HouseServiceImp implements HouseService {
 	}
 
 	
-//	@Transactional
-//	public List<House> searchDong(String sidoName, String gugunName, String dongName)
-//		return dao.searchDong(sidoName, gugunName, dongName);
-//	}
+	@Transactional
+	public List<House> searchDong(String sidoName, String gugunName, String dongName){
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		map.put("gugunName",gugunName);
+		map.put("dongName",dongName);
+		return dao.searchDong(map);
+	}
+
 	/*
 	@Override
 	public void remove(int no) throws SQLException {
@@ -57,5 +64,7 @@ public class HouseServiceImp implements HouseService {
 	public String aptName2DongCode(String aptName) {
 		return dao.aptName2DongCode(aptName);
 	}
+
+	
 
 }

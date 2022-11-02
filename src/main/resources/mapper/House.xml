@@ -6,10 +6,18 @@
 	
 	<select id="searchApt"			parameterType="string"  	resultType="House">
 		select * from housedeal join 
-		(SELECT aptCode, aptName, sidoName, gugunName, houseinfo.dongName, 
+		(select aptCode, aptName, sidoName, gugunName, houseinfo.dongName, 
 		houseinfo.jibun, houseinfo.lat, houseinfo.buildYear, houseinfo.lng, img FROM houseinfo join baseaddress
-		using #{aptName} where aptName like ?) info using #{aptCode} order by no desc
+		using(dongCode) where aptName LIKE #{aptName}) info using(aptCode) order by no desc
+	</select>
+	
+	
+	<select id="searchDong" parameterType="map" resultType="House">
+		select * from housedeal join (SELECT aptCode, aptName, sidoName, gugunName, houseinfo.dongName,
+										houseinfo.jibun, houseinfo.buildYear, houseinfo.lat, houseinfo.lng, img
+										FROM houseinfo join baseaddress using(dongCode)
+									where sidoName LIKE #{sidoName} and gugunName LIKE #{gugunName} and houseinfo.dongName LIKE #{dongName})
+									info USING(aptCode)
 	</select>
 	
 </mapper>
-	

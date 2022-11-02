@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="com.ssafy.dto.*"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +48,7 @@
 			
 			<div class="container-fluid px-4">
 				<div class="container">
-					<form id="form-deal-2" action="${root}/searchApt">
+					<form id="form-deal-2" action="${root}/house/searchApt">
 						<div class="row col-md-12 justify-content-center mb-2">
 							<div class="form-group col-md-10">
 								<input type="text" name="aptName" class="form-control" placeholder="아파트 이름을 입력하세요.">
@@ -165,7 +164,7 @@
 
 	        document.querySelector("#list-btn").addEventListener("click", function () {
 				let form = document.querySelector("#form-deal");
-                form.setAttribute("action", "${root}/searchDong");
+                form.setAttribute("action", "${root}/house/searchDong");
                 form.submit();
 	        });
 	        

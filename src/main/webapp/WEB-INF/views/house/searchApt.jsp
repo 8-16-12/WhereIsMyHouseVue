@@ -16,10 +16,10 @@
 			<div class="container-fluid px-4">
 				<h2 class="text-center mt-5 mb-5" style="font-family: Open Sans">아파트 매매 내역 검색</h2>
 				<div class="container">
-					<form id="form-deal-2" action="${root}/searchApt.do">
+					<form id="form-deal-2" action="${root}/house/searchApt">
 						<div class="row col-md-12 justify-content-center mb-2">
 							<div class="form-group col-md-10">
-								<input type="text" name="aptName" class="form-control" placeholder="아파트 이름을 입력하세요.">
+								<input type="text" name="aptName" class="form-control" placeholder="아파트 이름을 입력하세요." >
 							</div>
 							<div class="form-group col-md-2">
 								<button type="submit" class="btn btn-primary" style="width: 100%">아파트별 조회</button>

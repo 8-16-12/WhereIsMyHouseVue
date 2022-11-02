@@ -3,30 +3,32 @@ package com.ssafy.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ssafy.dto.Interest;
 import com.ssafy.model.dao.InterestDao;
-import com.ssafy.model.dao.InterestDaoImpl;
 
+
+@Service
 public class InterestServiceImpl implements InterestService {
 	
-	private static InterestService instance = new InterestServiceImpl();
-	private InterestServiceImpl() {}
-	public static InterestService getinstance() {
-		return instance;
-	}
+	@Autowired
+	private InterestDao dao;
 	
-	private InterestDao dao = InterestDaoImpl.getInstance();
-
-	@Override
-	public void insert(Interest interest) throws SQLException {
+	@Transactional
+	public void insert(Interest interest) {
 		dao.insert(interest);
 	}
-	@Override
-	public List<String> search(String id) throws SQLException {
+	
+	@Transactional
+	public List<String> search(String id) {
 		return dao.search(id);
 	}
-	@Override
-	public Interest searchByapt(String aptname) throws SQLException {
+	
+	@Transactional
+	public Interest searchByapt(String aptname) {
 		return dao.searchByapt(aptname);
 	}
 

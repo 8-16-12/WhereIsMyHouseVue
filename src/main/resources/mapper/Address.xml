@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.model.dao.AddressDao">
+	
+	<select id="Code2Name_Sido"			parameterType="string"  	resultType="Address">
+		select * from sidocode where sidoCode = #{sidoCode}	
+	</select>
+	
+	<select id="Code2Name_Gugun"			parameterType="string"  	resultType="Address">
+		select * from guguncode where gugunCode = #{gugunCode}	
+	</select>
+	
+	<select id="Code2Name_Dong"			parameterType="string"  	resultType="Address">
+		select * from dongcode where dongCode = #{dongCode}
+	</select>
+
+	<select id="Name2Code_Sido"			parameterType="string"  	resultType="Address">
+		select * from sidocode where sidoName = #{sidoName}
+	</select>
+
+	<select id="Name2Code_Gugun"			parameterType="string"  	resultType="Address">
+		select * from guguncode where gugunName = #{gugunName}
+	</select>
+
+	<select id="Name2Code_Dong"			parameterType="string"  	resultType="Address">
+		select * from dongcode where dongName = #{dongName}		
+	</select>
+	
+</mapper>
+
+			

@@ -7,11 +7,11 @@ import com.ssafy.dto.Interest;
 
 public interface InterestService {
 	
-	void insert(Interest interest) throws SQLException;	
+	void insert(Interest interest);
 	
-	Interest searchByapt(String aptname) throws SQLException;
+	Interest searchByapt(String aptname);
 	
-	List<String> search(String id) throws SQLException;	
+	List<String> search(String id);
 	/*Interest search(Interest interest) throws SQLException;	
 	void delete(String id) throws SQLException;	*/
 }
