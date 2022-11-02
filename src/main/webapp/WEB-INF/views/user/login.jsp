@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%@ include file="/include/header.jsp" %>
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 		<div class="container">
-          <form method="post" action="${root}/login.do">
+          <form method="post" action="${root}/login">
             <div class="mb-3 mt-3">
               <label for="text" class="form-label">아이디:</label>
               <input type="text" class="form-control" id="id" name="id" placeholder="아이디" name="아이디">
@@ -23,4 +23,4 @@
           </form>
         </div>
 
-<%@ include file="/include/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>

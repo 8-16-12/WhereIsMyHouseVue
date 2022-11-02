@@ -24,29 +24,35 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@GetMapping("/insert")
+	public void insert() {
+		System.out.println("웨 않대ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ");
+	}
+	
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute User user, Model model) {	
 		userService.insert(user);
 		return "redirect:/index";
 	}
+	
 	@GetMapping("/login")
-	public void login() {
+	public String login() {
 		System.out.println("도착했나");
-//		return "user/login";
+		return "user/login";
 	}
 	
-//	@PostMapping("/login")
-//	public String login(User user, HttpSession session, Model model) {
-//		String view = "/index";
-//		User loginUser = user;
-//		if (loginUser != null && user.getPass().equals(loginUser.getPass())) {
-//			session.setAttribute("loginUser", loginUser);
-//			view = "redirect:/";
-//		} else {
-//			model.addAttribute("msg", "로그인 실패");
-//		}
-//		
-//		return view;
-//	}
+	@PostMapping("/login")
+	public String login(User user, HttpSession session, Model model) {
+		String view = "/user/index";
+		User loginUser = user;
+		if (loginUser != null && user.getPass().equals(loginUser.getPass())) {
+			session.setAttribute("loginUser", loginUser);
+			view = "redirect:/";
+		} else {
+			model.addAttribute("msg", "로그인 실패");
+		}
+		
+		return view;
+	}
 	
 }

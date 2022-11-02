@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.ssafy.model.dao"})
+@ComponentScan(basePackages = {"com.ssafy"})
 @MapperScan(basePackages = {"com.ssafy.model.dao"})
 public class WhereIsMyHouseSpringApplication {
 

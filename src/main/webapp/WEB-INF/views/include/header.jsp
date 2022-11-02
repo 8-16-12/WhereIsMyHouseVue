@@ -43,9 +43,9 @@
                           우리를 위한 집 구하기
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="${root}/house/search.jsp">전체 조회</a>
-                            <a class="dropdown-item" href="${root}/house/searchDong.jsp">동별 조회</a>
-                            <a class="dropdown-item" href="${root}/house/searchApt.jsp">아파트별 조회</a>
+                            <a class="dropdown-item" href="${root}/house/search">전체 조회</a>
+                            <a class="dropdown-item" href="${root}/house/searchDong">동별 조회</a>
+                            <a class="dropdown-item" href="${root}/house/searchApt">아파트별 조회</a>
                           </div>
                       </li>
                       <li class="nav-item dropdown">
@@ -58,13 +58,13 @@
                       </li>
 
                       <li class="nav-item"><a href="https://land.naver.com/news/" class="nav-link">부동산 뉴스 (네이버)</a></li>
-                      <li class="nav-item"><a href="${root}/user/notice.jsp" class="nav-link">공지사항</a></li>
+                      <li class="nav-item"><a href="${root}/user/notice" class="nav-link">공지사항</a></li>
 				  </ul>
                   <c:choose>
 					<c:when test="${empty userinfo}">
 					<ul class="row justify-content-center">
 						<a class="btn btn-primary mx-1" href="${root}/user/login" role="button"> 로그인 </a>
-						<a class="btn btn-primary" href="${root}/user/insert.jsp" role="button"> 회원가입 </a>
+						<a class="btn btn-primary" href="${root}/user/insert" role="button"> 회원가입 </a>
 					</ul>
 					</c:when>
 					<c:otherwise>
@@ -75,13 +75,13 @@
                          	 내 관심사
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="${root}/dropdownInterest.do?id=${userinfo.id}">관심지역 둘러보기</a>
+                            <a class="dropdown-item" href="${root}/dropdownInterest?id=${userinfo.id}">관심지역 둘러보기</a>
                           </div>
                       </li>
                   	</ul>
                   	<ul class="row justify-content-center">
-						<a class="btn btn-primary mx-1" href="${root}/search.do?id=${userinfo.id}" role="button"> 내 정보 확인 </a>
-						<a class="btn btn-primary" href="${root}/logout.do" role="button"> 로그아웃 </a>
+						<a class="btn btn-primary mx-1" href="${root}/search?id=${userinfo.id}" role="button"> 내 정보 확인 </a>
+						<a class="btn btn-primary" href="${root}/logout" role="button"> 로그아웃 </a>
 					</ul>
 					
 					</c:otherwise>

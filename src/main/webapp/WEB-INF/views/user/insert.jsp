@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<%@ include file="/include/header.jsp" %>
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mt-3 mb-3" style="font-family: Open Sans">회원가입</h4>
-        <form id="insert-form" method="get" action="${root}/insert.do">
+        <form id="insert-form" method="get" action="${root}/insert">
 
           <div class="mb-3">
              <label for="id">아이디</label>
@@ -59,4 +59,4 @@
     </footer>
  </div>
 
-<%@ include file="/include/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
