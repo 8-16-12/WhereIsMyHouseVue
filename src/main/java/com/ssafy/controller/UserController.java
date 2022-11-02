@@ -29,13 +29,24 @@ public class UserController {
 		userService.insert(user);
 		return "redirect:/index";
 	}
-	
-	@PostMapping("/login")
-	public String login(User user, HttpSession session, Model model) {
-		String view = "/index";
-		
-		
-		return view;
+	@GetMapping("/login")
+	public void login() {
+		System.out.println("도착했나");
+//		return "user/login";
 	}
+	
+//	@PostMapping("/login")
+//	public String login(User user, HttpSession session, Model model) {
+//		String view = "/index";
+//		User loginUser = user;
+//		if (loginUser != null && user.getPass().equals(loginUser.getPass())) {
+//			session.setAttribute("loginUser", loginUser);
+//			view = "redirect:/";
+//		} else {
+//			model.addAttribute("msg", "로그인 실패");
+//		}
+//		
+//		return view;
+//	}
 	
 }

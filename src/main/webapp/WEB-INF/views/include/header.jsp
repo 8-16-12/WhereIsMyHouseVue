@@ -63,7 +63,7 @@
                   <c:choose>
 					<c:when test="${empty userinfo}">
 					<ul class="row justify-content-center">
-						<a class="btn btn-primary mx-1" href="${root}/user/login.jsp" role="button"> 로그인 </a>
+						<a class="btn btn-primary mx-1" href="${root}/user/login" role="button"> 로그인 </a>
 						<a class="btn btn-primary" href="${root}/user/insert.jsp" role="button"> 회원가입 </a>
 					</ul>
 					</c:when>
