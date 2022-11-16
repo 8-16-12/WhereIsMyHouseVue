@@ -59,6 +59,7 @@
 
                       <li class="nav-item"><a href="https://land.naver.com/news/" class="nav-link">부동산 뉴스 (네이버)</a></li>
                       <li class="nav-item"><a href="${root}/user/notice" class="nav-link">공지사항</a></li>
+                      <li class="nav-item"><a href="${root}/qna" class="nav-link">qna</a></li>
 				  </ul>
                   <c:choose>
 					<c:when test="${empty userinfo}">

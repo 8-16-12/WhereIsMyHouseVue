@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.model.dao.QnaDao">
+
+	<!-- 자주 사용하는 where 조건을 지정해서 재사용 -->
+	<sql id='searchcon'>
+		<if  test="word != null and word !='' ">
+			<choose>
+				<when test=" key =='userid'">
+					userid = #{word}
+				</when>
+			</choose>
+		</if>
+	</sql>
+	
+	<select id="searchAll"			parameterType="PageBean"	resultType="Qna">
+		select * from qna
+		<where>
+			<include refid="searchcon"/>	
+		</where>
+		order by no
+		limit #{start}, #{interval}
+	</select>
+	
+	<select id='totalCount'			parameterType="PageBean"	resultType="int">
+		select count(*) as cnt from qna
+		<where>
+			<include refid="searchcon"/>	
+		</where>
+	
+	</select>
+	
+	<select id='search'				parameterType="int"		resultType="Qna">
+		select * from qna where no = #{no}
+	</select>
+	
+	
+	<insert id='insert'				parameterType="Qna">
+		insert into qna(question,userid )
+		values ( #{question}, #{userid})
+	</insert>
+	
+	<update id='update'				parameterType="Qna">
+		update qna set answer = #{answer}
+		where no = #{no}
+	</update>
+	
+	
+	<delete id="delete"				parameterType="int">
+		delete from qna where no = #{no} 
+	</delete>
+	
+</mapper>
+
+

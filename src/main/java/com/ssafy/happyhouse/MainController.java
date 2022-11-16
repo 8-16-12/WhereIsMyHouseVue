@@ -8,6 +8,14 @@ public class MainController {
 	
 	@GetMapping({"/", "/index"})
 	public String index() {
+		
+		
+		System.out.println("MainController..................................index");
 		return "index";
+	}
+	
+	@GetMapping({"/qna"})
+	public String qna() {
+		return "qna";
 	}
 }
