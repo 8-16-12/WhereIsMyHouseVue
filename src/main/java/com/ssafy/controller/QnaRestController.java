@@ -80,7 +80,7 @@ public class QnaRestController {
 	
 	@ApiOperation(value = "책 정보 검색", notes = "isbn에 해당하는 책 정보를 검색")
 	@GetMapping("/qna/{no}")
-	public ResponseEntity<?> search(@PathVariable int no) {
+	public ResponseEntity<?> search(@RequestParam int no) {
 		logger.debug("QnaController.search....................no:{}", no);
 		Qna qna = qnaService.search(no);
 		logger.debug("BookController.search....................qna:{}", qna);
