@@ -8,18 +8,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ssafy.dto.House;
 import com.ssafy.dto.Interest;
+import com.ssafy.dto.PageBean;
 import com.ssafy.model.service.AddressService;
 import com.ssafy.model.service.HouseService;
 import com.ssafy.model.service.InterestService;
+
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/house")
@@ -34,83 +40,21 @@ public class HouseController {
 	@Autowired
 	InterestService interestservice;
 	
+	private static final String SUCCESS = "success";
+	
 	private static List<House> houses;
 
-//	private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//		String action = request.getServletPath();
-//		System.out.println("action........." + action);
-//		String url = "index.jsp";
-//		/****************************/
-////		if (publicKey == null) {
-////	        HashMap<String, String> rsaKeyPair = createKeypairAsString();
-////	        //publicKey = rsaKeyPair.get("publicKey");
-////	        //privateKey = rsaKeyPair.get("privateKey");
-////	        System.out.println("public" + publicKey);
-////	        System.out.println("private" + privateKey);
-////	        
-////		}
-//		/****************************/
-//		
-//		try {
-//			switch(action) {
-//			case "/insert.do":
-//				url = insert(request, response); break;
-//			case "/login.do":
-//				url = login(request, response); break;
-//			case "/search.do":
-//				url = search(request, response); break;
-//			case "/update.do":
-//				url = update(request, response); break;
-//			case "/delete.do":
-//				url = delete(request, response); break;
-//			case "/logout.do":
-//				url = logout(request, response); break;
-//
-//			case "/searchApt.do":
-//				url = searchApt(request, response);	break;
-//			case "/selectInterest.do":
-//				url = selectInterest(request, response); break;
-//				
-//			case "/registInterest.do":
-//				url = registInterest(request, response); break;
-//			case "/dropdownInterest.do":
-//				url = dropdownInterest(request, response); break;
-//			// 유림 ////////////////////////////////////////////////////////////////////////////////////////
-//			case "/sortingAlgorithm.do":
-//				url = sortingbyprice(request, response); break;
-//			//////////////////////////////////////////////////////////////////////////////////////////////
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			url = "error/error.jsp";
-//		}
-//		
-//		try {
-//			switch(action) {
-//				case "/searchDong.do":
-//				url = searchDong(request, response); break;
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			url = "house/nothing.jsp";
-//		}
-//		
-//		if (url.startsWith("redirect:")) {
-//			System.out.println("redirect.........");
-//			response.sendRedirect(url.substring(9));
-//		} else {
-//			request.getRequestDispatcher(url).forward(request, response);
-//		}
-//	}
 	
 	// 유림 ////////////////////////////////////////////////////////////////////////////////////////
-	@GetMapping("/sortingAlgorithm")
-	private String sortingbyprice(HttpServletRequest request, HttpServletResponse response) {
-		// 아파트 정렬해서 출력하기 - house의 거래매매가격 house.getDealAmount()
-		houses.sort(new House());
-		request.setAttribute("houses", houses);
-		return "house/list";
-	}
+//	@GetMapping("/sortingAlgorithm")
+
+//	private String sortingbyprice(HttpServletRequest request, HttpServletResponse response) {
+//		// 아파트 정렬해서 출력하기 - house의 거래매매가격 house.getDealAmount()
+//		houses.sort(new House());
+//		request.setAttribute("houses", houses);
+//		return "house/list";
+//	}
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@GetMapping("/dropdownInterest")
@@ -161,20 +105,28 @@ public class HouseController {
 	private String getSearchAptForm() {
 		return "house/searchApt";
 	}
-	@GetMapping("/searchApt")
-	private String searchApt(HttpServletRequest request, HttpServletResponse response) {
-		String aptName = request.getParameter("aptName");
-//		List<House> houses = houseService.searchApt(aptName);
-		
-		// 유림 ////////////////////////////////////////////////////////////////////////////////////////
-		houses = houseService.searchApt(aptName);
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		
-		if (houses.size() == 0)
-			return "house/nothing_apt";
-		request.setAttribute("houses", houses);
-		return "house/list";
+	@GetMapping("/searchApt/{aptName}")
+	public ResponseEntity<?> searchApt(@PathVariable String aptName) {
+		List<House> houses = houseService.searchApt(aptName);
+		if (houses != null) {
+			return new ResponseEntity<List<House>>(houses, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
 	}
+//	private String searchApt(HttpServletRequest request, HttpServletResponse response) {
+//		String aptName = request.getParameter("aptName");
+////		List<House> houses = houseService.searchApt(aptName);
+//		
+//		// 유림 ////////////////////////////////////////////////////////////////////////////////////////
+//		houses = houseService.searchApt(aptName);
+//		//////////////////////////////////////////////////////////////////////////////////////////////
+//		
+//		if (houses.size() == 0)
+//			return "house/nothing_apt";
+//		request.setAttribute("houses", houses);
+//		return "house/list";
+//	}
 	
 	
 	@GetMapping("/searchDongForm")

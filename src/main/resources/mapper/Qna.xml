@@ -21,7 +21,7 @@
 			<include refid="searchcon"/>	
 		</where>
 		order by no
-		limit #{start}, #{interval}
+		limit #{start}, 10
 	</select>
 	
 	<select id='totalCount'			parameterType="PageBean"	resultType="int">

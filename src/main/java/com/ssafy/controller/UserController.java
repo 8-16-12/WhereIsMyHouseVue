@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ssafy.dto.User;
 import com.ssafy.model.service.UserService;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -27,15 +31,22 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	private static final String SUCCESS = "success";
+	
 	@GetMapping("/insert")
 	public void insertForm() {
 	}
 	
 	@PostMapping("/insert")
-	public String insert(User user) {
+	public ResponseEntity<User> insert(@RequestBody User user) {
+		logger.debug("insert user............................");
 		userService.insert(user);
-		return "redirect:/index";
+		return new ResponseEntity<User>(SUCCESS, HttpStatus.OK);
 	}
+//	public String insert(User user) {
+//		userService.insert(user);
+//		return "redirect:/index";
+//	}
 	
 	@GetMapping("/login")
 	public void login() {
