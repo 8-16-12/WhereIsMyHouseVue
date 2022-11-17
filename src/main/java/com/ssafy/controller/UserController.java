@@ -33,15 +33,15 @@ public class UserController {
 	
 	private static final String SUCCESS = "success";
 	
-	@GetMapping("/insert")
-	public void insertForm() {
-	}
+//	@GetMapping("/insert")
+//	public void insertForm() {
+//	}
 	
 	@PostMapping("/insert")
-	public ResponseEntity<User> insert(@RequestBody User user) {
+	public ResponseEntity<String> insert(@RequestBody User user) {
 		logger.debug("insert user............................");
 		userService.insert(user);
-		return new ResponseEntity<User>(SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
 //	public String insert(User user) {
 //		userService.insert(user);
