@@ -3,14 +3,21 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.model.dao.InterestDao">
-
+	
+	<insert id="insert"		parameterType="Interest"	>
+		insert into 
+		interest(id, aptCode, aptName, sidoCode, sidoName, gugunCode, gugunName, dongCode, dongName, lat, lng)
+		values(#{id}, #{aptCode]}, #{aptName}, #{sidoCode}, #{sidoName}, #{gugunCode}, #{gugunName}, #{dongCode}, #{dongName}, #{lat}, #{lng})
+	</insert>
 	
 	
+	<select id="search" 	parameterType="string"	resultType="List<String>">
+		select distinct aptName from interest where id=#{id}
+	</select>
 	
-
-	
-	
-	
+	<select id="searchByapt" 	parameterType="string"	resultType="Interest">
+		select * from interest where aptName=#{aptName}
+	</select>
 	
 </mapper>
 

@@ -56,14 +56,6 @@ public class HouseController {
 //	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////
-	
-	@GetMapping("/dropdownInterest")
-	private String dropdownInterest(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		List<String> list = interestservice.search(id);
-		request.setAttribute("InterestList", list);
-		return "Interest/selectInterest";
-	}
 
 	// 중복제거 만들면 좋겠다
 	@GetMapping("/registInterest")
@@ -160,15 +152,6 @@ public class HouseController {
 		}
 	}
 	
-	@GetMapping("/selectInterest")
-	private String selectInterest(HttpServletRequest request, HttpServletResponse response) {
-		String aptname = request.getParameter("aptName");
-		Interest interest = interestservice.searchByapt(aptname);
-		request.setAttribute("interest", interest);
-		System.out.println(interest);
-		
-		return "Interest/showInterest";
-	}
 		
 //	@GetMapping("/searchApt")
 //	public String searchAptForm() {
