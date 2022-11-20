@@ -75,6 +75,7 @@ public class NoticeRestController {
 		Notice notice = noticeService.search(no);
 		logger.debug("NoticekController.search....................notice:{}", notice);
 		if (notice != null) {
+			noticeService.hit(notice);
 			return new ResponseEntity<Notice>(notice, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

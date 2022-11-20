@@ -11,4 +11,5 @@ public interface NoticeService {
 	public void insert(Notice notice);
 	public void update(Notice notice);
 	public void delete(int no);
+	public void hit(Notice notice);
 }

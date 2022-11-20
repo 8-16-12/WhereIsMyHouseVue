@@ -19,16 +19,16 @@ public class NoticeServiceImp implements NoticeService {
 	
 	@Transactional(readOnly = true)
 	public List<Notice> searchAll(PageBean bean) {
-		int cnt = dao.totalCount(bean);
-		try {
-			PageUtility page = new PageUtility(bean.getInterval()
-											, cnt
-											, bean.getPageNo()
-											, "");
-			bean.setPageLink(page.getPageBar());
-		} catch (Exception e) {
-			
-		}
+//		int cnt = dao.totalCount(bean);
+//		try {
+//			PageUtility page = new PageUtility(bean.getInterval()
+//											, cnt
+//											, bean.getPageNo()
+//											, "");
+//			bean.setPageLink(page.getPageBar());
+//		} catch (Exception e) {
+//			
+//		}
 		return dao.searchAll(bean);
 	}
 
@@ -50,6 +50,11 @@ public class NoticeServiceImp implements NoticeService {
 	@Transactional
 	public void delete(int no) {
 		dao.delete(no);
+	}
+	
+	@Transactional
+	public void hit(Notice notice) {
+		dao.hit(notice);
 	}
 
 }

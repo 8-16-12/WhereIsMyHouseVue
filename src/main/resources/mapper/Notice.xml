@@ -20,8 +20,8 @@
 		<where>
 			<include refid="searchcon"/>	
 		</where>
-		order by no
-		limit #{start}, 10
+		order by no desc
+		<!-- limit #{start}, 10 -->
 	</select>
 	
 	<select id='totalCount'			parameterType="PageBean"	resultType="int">
@@ -39,7 +39,10 @@
 	
 	<insert id='insert'				parameterType="Notice">
 		insert into notice( id,subject, content)
-		values (  #{id},#{subject},#{content} )
+		values (  #{id},#{subject},#{content} );
+		
+		SET @COUNT = 0;
+		UPDATE notice SET no = @COUNT:=@COUNT+1;
 	</insert>
 	
 	<update id='update'				parameterType="Notice">
@@ -47,9 +50,17 @@
 		where no = #{no}
 	</update>
 	
+	<update id='hit'				parameterType="Notice">
+		update notice set hit = hit + 1
+		where no = #{no}
+	</update>
+	
 	
 	<delete id="delete"				parameterType="int">
-		delete from notice where no = #{no} 
+		delete from notice where no = #{no};
+		
+		SET @COUNT = 0;
+		UPDATE notice SET no = @COUNT:=@COUNT+1;
 	</delete>
 	
 </mapper>
