@@ -4,6 +4,7 @@
 <head>
 <%@ include file="/WEB-INF/views/include/front.jsp" %>
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	<c:if test="${not empty msg_login}">
 		alert("${msg_login}");
@@ -12,6 +13,23 @@
 		alert("${msg_update}");
 	</c:if>
 	
+	
+	window.Kakao.init("b99103b95fda97377eadc2f9af649331");
+	
+	function kakaoLogout() {
+	    if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	        	console.log(response)
+	        },
+	        fail: function (error) {
+	          console.log(error)
+	        },
+	      })
+	      Kakao.Auth.setAccessToken(undefined)
+	    }
+	  }  
 </script>
 
 </head>
@@ -82,7 +100,7 @@
                   	</ul>
                   	<ul class="row justify-content-center">
 						<a class="btn btn-primary mx-1" href="${root}/user/search?id=${userinfo.id}" role="button"> 내 정보 확인 </a>
-						<a class="btn btn-primary" href="${root}/user/logout" role="button"> 로그아웃 </a>
+						<a class="btn btn-primary" href="${root}/user/logout" onclick="kakaoLogout();" role="button"> 로그아웃 </a>
 					</ul>
 					
 					</c:otherwise>

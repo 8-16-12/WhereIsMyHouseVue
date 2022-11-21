@@ -1,5 +1,7 @@
 package com.ssafy.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,12 +17,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ssafy.dto.User;
 import com.ssafy.model.service.UserService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @Controller
 @RequestMapping("/user")
@@ -55,8 +57,41 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public String login(User user, HttpServletRequest request, Model model) {
-		String view = "/index";
+		
 		HttpSession session = request.getSession();
+		
+		String view = "/index";
+		String kakaoid = request.getParameter("kaoemail");
+		String kakaopass = "$%&*&@#@$@$%%223121432!!!@";
+		String kakaoname = request.getParameter("kaoname");
+		String kakaobirth = request.getParameter("kaobirth");
+		
+		if(kakaoid != null ) {
+			if(userService.search(kakaoid) == null) {
+				System.out.println("카카오 new 로그인");
+				User kakao = new User();
+				kakao.setId(kakaoid);
+				kakao.setPass(kakaopass);
+				kakao.setName(kakaoname);
+				kakao.setEmail(kakaoid);
+				kakao.setBirth(kakaobirth);
+				kakao.setAddr("");
+				
+				userService.insert(kakao);
+				
+				session.setAttribute("userinfo", kakao);			
+				System.out.println("신규로그인 성공");
+				System.out.println(kakao);
+			} else {
+				User kakao = userService.search(kakaoid);
+				System.out.println(kakao);
+				session.setAttribute("userinfo", kakao);			
+				System.out.println("원래 로그인 성공");
+			}
+			return "redirect:/index";
+		}
+			
+		
 		User login = userService.search(user.getId());
 		if (login != null && user.getPass().equals(login.getPass())) {
 			
@@ -104,5 +139,5 @@ public class UserController {
 	
 	@GetMapping("/notice")
 	public void notice() {}
-	
+
 }
