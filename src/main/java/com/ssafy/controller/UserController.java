@@ -35,20 +35,15 @@ public class UserController {
 	
 	private static final String SUCCESS = "success";
 	
-//	@GetMapping("/insert")
-//	public void insertForm() {
-//	}
+	@GetMapping("/insert")
+	public void insertForm() {
+	}
 	
 	@PostMapping("/insert")
-	public ResponseEntity<String> insert(@RequestBody User user) {
-		logger.debug("insert user............................");
+	public String insert(User user) {
 		userService.insert(user);
-		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		return "redirect:/index";
 	}
-//	public String insert(User user) {
-//		userService.insert(user);
-//		return "redirect:/index";
-//	}
 	
 	@GetMapping("/login")
 	public void login() {
@@ -62,11 +57,12 @@ public class UserController {
 		
 		String view = "/index";
 		String kakaoid = request.getParameter("kaoemail");
+		System.out.println(kakaoid);
 		String kakaopass = "$%&*&@#@$@$%%223121432!!!@";
 		String kakaoname = request.getParameter("kaoname");
 		String kakaobirth = request.getParameter("kaobirth");
 		
-		if(kakaoid != null ) {
+		if(kakaoid != "" ) {
 			if(userService.search(kakaoid) == null) {
 				System.out.println("카카오 new 로그인");
 				User kakao = new User();
@@ -80,30 +76,30 @@ public class UserController {
 				userService.insert(kakao);
 				
 				session.setAttribute("userinfo", kakao);			
-				System.out.println("신규로그인 성공");
+				System.out.println("카카오 신규로그인 성공");
 				System.out.println(kakao);
 			} else {
 				User kakao = userService.search(kakaoid);
 				System.out.println(kakao);
 				session.setAttribute("userinfo", kakao);			
-				System.out.println("원래 로그인 성공");
+				System.out.println("카카오 원래 로그인 성공");
 			}
 			return "redirect:/index";
-		}
-			
-		
-		User login = userService.search(user.getId());
-		if (login != null && user.getPass().equals(login.getPass())) {
-			
-			session.setAttribute("userinfo", login);			
-			System.out.println("로그인 왜 안되냐ㅏ아ㅏㅏㅏㅏㅏㅏ");
-			view = "redirect:/";
 		} else {
-			model.addAttribute("msg", "로그인 실패");
-			view = "redirect:/user/login";
+			
+			User login = userService.search(user.getId());
+			if (login != null && user.getPass().equals(login.getPass())) {
+				
+				session.setAttribute("userinfo", login);			
+				System.out.println(session);
+				view = "redirect:/";
+			} else {
+				model.addAttribute("msg", "로그인 실패");
+				view = "redirect:/user/login";
+			}
+			
+			return view;
 		}
-		
-		return view;
 	}
 	
 	@GetMapping("/search")

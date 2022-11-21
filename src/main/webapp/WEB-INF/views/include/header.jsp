@@ -17,7 +17,9 @@
 	window.Kakao.init("b99103b95fda97377eadc2f9af649331");
 	
 	function kakaoLogout() {
+		alert("ddddddd");
 	    if (Kakao.Auth.getAccessToken()) {
+	    	alert("카카오로그아웃");
 	      Kakao.API.request({
 	        url: '/v1/user/unlink',
 	        success: function (response) {
