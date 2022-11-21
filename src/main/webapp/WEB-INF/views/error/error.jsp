@@ -15,4 +15,4 @@
 		</div>
 	</div>
 	<%-- --%>
-<%@ include file="/include/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
