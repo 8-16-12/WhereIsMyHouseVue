@@ -127,13 +127,12 @@ public class HouseController {
 			return "house/list";
 		}
 		
-		// 서울이 아닐 경우
+		//......................... 서울이 아닐 경우
 		if(!sido.equals("서울특별시")) {
 			System.out.printf("NOT SEOUL.............!!!!!!" + sido );
 			request.setAttribute("sido", sido);
 			return "house/nothing";
 		}
-		
 
 		// 구군 입력 
 		if (!gugun.equals(""))
@@ -154,11 +153,14 @@ public class HouseController {
 		}
 		
 		houses = houseService.searchDong(sido, gugun, dong);
-		request.setAttribute("houses", houses);
-		return "house/list";
+		if (houses.size() == 0) {
+			request.setAttribute("sido", sido+' '+gugun+' '+dong);
+			return "house/nothing";
+		} else {
+			request.setAttribute("houses", houses);
+			return "house/list";
+		}
 	}
-
-	
 	
 	// 아파트 이름 검색 - complete
 	@GetMapping("/searchAptForm")
