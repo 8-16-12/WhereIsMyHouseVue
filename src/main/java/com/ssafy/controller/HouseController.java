@@ -40,10 +40,7 @@ public class HouseController {
 	@Autowired
 	InterestService interestservice;
 	
-	private static final String SUCCESS = "success";
-	
 	private static List<House> houses;
-
 	
 	// 유림 ////////////////////////////////////////////////////////////////////////////////////////
 //	@GetMapping("/sortingAlgorithm")
@@ -54,12 +51,11 @@ public class HouseController {
 //		request.setAttribute("houses", houses);
 //		return "house/list";
 //	}
-	
 	//////////////////////////////////////////////////////////////////////////////////////////////
-
-	// 중복제거 만들면 좋겠다
+	
 	@GetMapping("/registInterest")
 	private String registInterest(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("here.............................!!!!!!!!!!!!!!!!");
 		String id = request.getParameter("id");
 		String aptName = request.getParameter("aptName");
 		String sidoName = request.getParameter("sidoName");
@@ -70,59 +66,48 @@ public class HouseController {
 		String gugunCode = addressService.Name2Code_Gugun(gugunName).getGugunCode();
 		String dongCode = addressService.Name2Code_Dong(dongName).getDongCode();
 		
-		List<House> houses = houseService.searchApt(aptName);
+		System.out.println(sidoCode +" "+ gugunCode +" "+ dongCode);
 		
+		houses = houseService.searchApt(aptName);
 		for (House house : houses) {
 			int aptCode = house.getAptCode();
 			String lat = house.getLat();
 			String lng = house.getLng();
 			
 			Interest interest = new Interest(id,aptCode,aptName,sidoCode,sidoName,gugunCode,gugunName,dongCode,dongName,lat,lng);
+			System.out.println(interest.toString());
 			interestservice.insert(interest);
 		}
 		return "redirect:/index";
 	}
 	
-	
-	
-	@GetMapping("/searchForm")
-	private String getSearchForm() {
-		return "house/search";
-	}
-
-	
-	
-	
-	@GetMapping("/searchAptForm")
-	private String getSearchAptForm() {
-		return "house/searchApt";
-	}
-	@GetMapping("/searchApt/{aptName}")
-	public ResponseEntity<?> searchApt(@PathVariable String aptName) {
-		List<House> houses = houseService.searchApt(aptName);
-		if (houses != null) {
-			return new ResponseEntity<List<House>>(houses, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		}
-	}
-//	private String searchApt(HttpServletRequest request, HttpServletResponse response) {
-//		String aptName = request.getParameter("aptName");
-////		List<House> houses = houseService.searchApt(aptName);
-//		
-//		// 유림 ////////////////////////////////////////////////////////////////////////////////////////
-//		houses = houseService.searchApt(aptName);
-//		//////////////////////////////////////////////////////////////////////////////////////////////
-//		
-//		if (houses.size() == 0)
-//			return "house/nothing_apt";
-//		request.setAttribute("houses", houses);
-//		return "house/list";
+// REST------------------------	
+//	@GetMapping("/searchAptForm")
+//	private String getSearchAptForm() {
+//		System.out.println("SearchForm..........AptName");
+//		return "house/searchApt";
+//	}
+//	@GetMapping("/searchApt/{aptName}")
+//	public ResponseEntity<?> searchApt(@PathVariable String aptName) {
+//		List<House> houses = houseService.searchApt(aptName);
+//		if (houses != null) {
+//			return new ResponseEntity<List<House>>(houses, HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+//		}
 //	}
 	
+	// 전체 검색 폼 - complete 
+	@GetMapping("/searchForm")
+	private String getSearchForm() {
+		System.out.println("SearchForm..........All");
+		return "house/search";
+	}
 	
+	// 동 검색 - complete 
 	@GetMapping("/searchDongForm")
 	private String getSearchDongForm() {
+		System.out.println("SearchForm..........Dong");
 		return "house/searchDong";
 	}
 	@GetMapping("/searchDong")
@@ -136,12 +121,8 @@ public class HouseController {
 			gugun = addressService.Code2Name_Gugun(gugun).getGugunName();
 		if (!dong.equals(""))
 			dong = addressService.Code2Name_Dong(dong).getDongName();
-		
 		if (sido.equals("서울특별시")) {
-//			List<House> houses = houseService.searchDong(sido, gugun, dong);
-			// 유림 ////////////////////////////////////////////////////////////////////////////////////////
 			houses = houseService.searchDong(sido, gugun, dong);
-			//////////////////////////////////////////////////////////////////////////////////////////////
 			if (houses == null)
 				return "house/nothing";
 			request.setAttribute("houses", houses);
@@ -152,20 +133,19 @@ public class HouseController {
 		}
 	}
 	
-		
-//	@GetMapping("/searchApt")
-//	public String searchAptForm() {
-//		return "house/searchApt";
-//	}
-//	
-//	@PostMapping("/searchApt")
-//	public String searchAptName(String aptName, Model model) {
-//		System.out.println("searchApt...............aptName : {}");
-//		logger.debug("searchApt...............aptName : {}", aptName);
-//		List<House> searchAptList = houseService.searchApt(aptName);
-//		System.out.println("@@@@@@@@@@@@@@@@@@@@@" + searchAptList.size());
-//		logger.debug("searchApt...............apt : {}", searchAptList);
-//		model.addAttribute("houses", searchAptList);
-//		return "house/list";
-//	}
+	// 아파트 이름 검색 - complete
+	@GetMapping("/searchAptForm")
+	public String searchAptForm() {
+		System.out.println("SearchForm..........AptName");
+		return "house/searchApt";
+	}
+	@GetMapping("/searchApt")
+	private String searchApt(HttpServletRequest request, HttpServletResponse response) {
+		String aptName = request.getParameter("aptName");
+		houses = houseService.searchApt(aptName);
+		if (houses.size() == 0)
+			return "house/nothing_apt";
+		request.setAttribute("houses", houses);
+		return "house/list";
+	}
 }

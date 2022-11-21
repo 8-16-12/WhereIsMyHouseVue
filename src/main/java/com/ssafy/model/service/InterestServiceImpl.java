@@ -1,6 +1,5 @@
 package com.ssafy.model.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ public class InterestServiceImpl implements InterestService {
 	
 	@Transactional
 	public void insert(Interest interest) {
+		System.out.println("InterestServiceImpl..............insert");
 		dao.insert(interest);
 	}
 	

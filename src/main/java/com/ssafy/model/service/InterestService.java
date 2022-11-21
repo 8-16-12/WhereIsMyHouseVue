@@ -1,6 +1,5 @@
 package com.ssafy.model.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.ssafy.dto.Interest;

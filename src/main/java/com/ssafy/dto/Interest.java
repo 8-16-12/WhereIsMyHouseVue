@@ -17,16 +17,20 @@ public class Interest {
 
 	public Interest(String id, int aptCode, String aptName, String sidoCode, String sidoName, String gugunCode,
 			String gugunName, String dongCode, String dongName, String lat, String lng) {
-		super();
 		this.id = id;
+		
 		this.aptCode = aptCode;
 		this.aptName = aptName;
+		
 		this.sidoCode = sidoCode;
 		this.sidoName = sidoName;
+		
 		this.gugunCode = gugunCode;
 		this.gugunName = gugunName;
+		
 		this.dongCode = dongCode;
 		this.dongName = dongName;
+		
 		this.lat = lat;
 		this.lng = lng;
 	}

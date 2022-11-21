@@ -31,7 +31,7 @@ public class House implements Serializable, Comparator<House>{
 	private String img;
 	
 	public House() {}
-	public House(int no, int aptCode_deal, String aptName, 
+	public House(int no, int aptCode, String aptName, 
 				String dealAmount, int dealYear, int dealMonth, int dealDay,
 				String area, String floor, String type, String rentMoney,
 				String sidoName, String gugunName, String dongName, String jibun, 
