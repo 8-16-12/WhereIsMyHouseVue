@@ -66,7 +66,7 @@
 						<h4 class="text-center mt-3 mb-3" style="font-family: Open Sans"> 관심지역을 등록해서 여러 정보를 확인하세요!</h4>
 						
 						<div style=" text-align: center;">
-							<a class="btn btn-primary mx-1 mb-3" href="sortingAlgorithm.do" role="button"> 매매가 낮은 순으로 보기 </a>
+							<a class="btn btn-primary mx-1 mb-3" href="sortingAlgorithm" role="button"> 매매가 낮은 순으로 보기 </a>
 						</div>
 						
 
@@ -93,7 +93,7 @@
 						
 						<c:choose>
 							<c:when test="${not empty userinfo}">
-								<td><a class="btn btn-primary mx-1" href="registInterest.do?id=${userinfo.id}
+								<td><a class="btn btn-primary mx-1" href="registInterest?id=${userinfo.id}
 																							&aptName=${house.aptName}
 																							&sidoName=${house.sidoName}
 																							&gugunName=${house.gugunName}

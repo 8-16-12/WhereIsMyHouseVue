@@ -23,7 +23,6 @@
 		values(#{id}, #{aptCode}, #{aptName}, #{sidoCode}, #{sidoName}, #{gugunCode}, #{gugunName}, #{dongCode}, #{dongName}, #{lat}, #{lng})
 	</insert>
 	
-	
 	<select id="search" 	parameterType="string"	resultType="String">
 		select distinct aptName from interest where id=#{id}
 	</select>
@@ -31,5 +30,4 @@
 	<select id="searchByapt" 	parameterType="string"	resultType="Interest">
 		select * from interest where aptName=#{aptName}
 	</select>
-	
 </mapper>

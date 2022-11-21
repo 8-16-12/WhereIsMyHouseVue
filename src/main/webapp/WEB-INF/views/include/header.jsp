@@ -76,7 +76,7 @@
                          	 내 관심사
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="${root}/dropdownInterest?id=${userinfo.id}">관심지역 둘러보기</a>
+                            <a class="dropdown-item" href="${root}/interest/dropdownInterest?id=${userinfo.id}">관심지역 둘러보기</a>
                           </div>
                       </li>
                   	</ul>

@@ -28,7 +28,7 @@ public class InterestServiceImpl implements InterestService {
 	}
 	
 	@Transactional
-	public Interest searchByapt(String aptname) {
+	public List<Interest> searchByapt(String aptname) {
 		return dao.searchByapt(aptname);
 	}
 

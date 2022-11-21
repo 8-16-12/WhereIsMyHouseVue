@@ -8,7 +8,7 @@ public interface InterestDao {
 	
 	void insert(Interest interest);
 	
-	Interest searchByapt(String aptname);
+	List<Interest> searchByapt(String aptname);
 	
 	List<String> search(String id);
 	
