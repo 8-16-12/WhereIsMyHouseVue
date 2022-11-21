@@ -30,7 +30,7 @@
 				// 주소로 좌표를 검색합니다
 				geocoder
 						.addressSearch(
-								'인천광역시 미추홀구',
+								`${sido}`,
 								function(result, status) {
 
 									// 정상적으로 검색이 완료됐으면 

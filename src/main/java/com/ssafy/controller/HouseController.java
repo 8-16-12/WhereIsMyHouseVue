@@ -115,23 +115,50 @@ public class HouseController {
 		String sido = request.getParameter("sido");
 		String gugun = request.getParameter("gugun");
 		String dong = request.getParameter("dong");
+		
+		System.out.println(sido +" "+ gugun +" "+ dong);
+		
+		// 시도 입력 
 		if (!sido.equals(""))
 			sido = addressService.Code2Name_Sido(sido).getSidoName();
-		if (!gugun.equals(""))
-			gugun = addressService.Code2Name_Gugun(gugun).getGugunName();
-		if (!dong.equals(""))
-			dong = addressService.Code2Name_Dong(dong).getDongName();
-		if (sido.equals("서울특별시")) {
-			houses = houseService.searchDong(sido, gugun, dong);
-			if (houses == null)
-				return "house/nothing";
+		else {
+			houses = houseService.searchAll();
 			request.setAttribute("houses", houses);
 			return "house/list";
 		}
-		else {
+		
+		// 서울이 아닐 경우
+		if(!sido.equals("서울특별시")) {
+			System.out.printf("NOT SEOUL.............!!!!!!" + sido );
+			request.setAttribute("sido", sido);
 			return "house/nothing";
 		}
+		
+
+		// 구군 입력 
+		if (!gugun.equals(""))
+			gugun = addressService.Code2Name_Gugun(gugun).getGugunName();
+		else {
+			houses = houseService.searchSido(sido);
+			request.setAttribute("houses", houses);
+			return "house/list";
+		}
+		
+		// 동 입력
+		if (!dong.equals(""))
+			dong = addressService.Code2Name_Dong(dong).getDongName();
+		else {
+			houses = houseService.searchGugun(sido, gugun);
+			request.setAttribute("houses", houses);
+			return "house/list";
+		}
+		
+		houses = houseService.searchDong(sido, gugun, dong);
+		request.setAttribute("houses", houses);
+		return "house/list";
 	}
+
+	
 	
 	// 아파트 이름 검색 - complete
 	@GetMapping("/searchAptForm")

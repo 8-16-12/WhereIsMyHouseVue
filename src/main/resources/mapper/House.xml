@@ -21,6 +21,24 @@
 	</select>
 	
 	
+	<select id="searchGugun" parameterType="map" resultType="House">
+		select * from housedeal join (SELECT aptCode, aptName, sidoName, gugunName, houseinfo.dongName,
+										houseinfo.jibun, houseinfo.buildYear, houseinfo.lat, houseinfo.lng, img
+										FROM houseinfo join baseaddress using(dongCode)
+									where sidoName LIKE #{sidoName} and gugunName LIKE #{gugunName})
+									info USING(aptCode)
+	</select>
 	
 	
+	<select id="searchSido" parameterType="map" resultType="House">
+		select * from housedeal join (SELECT aptCode, aptName, sidoName, gugunName, houseinfo.dongName,
+										houseinfo.jibun, houseinfo.buildYear, houseinfo.lat, houseinfo.lng, img
+										FROM houseinfo join baseaddress using(dongCode)
+									where sidoName LIKE #{sidoName})
+									info USING(aptCode)
+	</select>
+	
+	<select id="searchAll" parameterType="map" resultType="House">
+		select * from housedeal
+	</select>
 </mapper>

@@ -65,6 +65,21 @@ public class HouseServiceImp implements HouseService {
 		return dao.aptName2DongCode(aptName);
 	}
 
+	@Override
+	public List<House> searchGugun(String sidoName, String gugunName) {
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		map.put("gugunName",gugunName);
+		return dao.searchGugun(map);
+	}
+
+	@Override
+	public List<House> searchSido(String sidoName) {
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		return dao.searchSido(map);
+	}
+
 	
 
 }
