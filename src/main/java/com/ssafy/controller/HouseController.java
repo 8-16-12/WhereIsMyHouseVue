@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ssafy.dto.Criteria;
 import com.ssafy.dto.House;
 import com.ssafy.dto.Interest;
 import com.ssafy.dto.PageBean;
+import com.ssafy.dto.PageMaker;
 import com.ssafy.model.service.AddressService;
 import com.ssafy.model.service.HouseService;
 import com.ssafy.model.service.InterestService;
@@ -55,7 +57,6 @@ public class HouseController {
 	
 	@GetMapping("/registInterest")
 	private String registInterest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("here.............................!!!!!!!!!!!!!!!!");
 		String id = request.getParameter("id");
 		String aptName = request.getParameter("aptName");
 		String sidoName = request.getParameter("sidoName");
@@ -66,16 +67,13 @@ public class HouseController {
 		String gugunCode = addressService.Name2Code_Gugun(gugunName).getGugunCode();
 		String dongCode = addressService.Name2Code_Dong(dongName).getDongCode();
 		
-		System.out.println(sidoCode +" "+ gugunCode +" "+ dongCode);
-		
-		houses = houseService.searchApt(aptName);
+		houses = houseService.searchInterest(aptName);
 		for (House house : houses) {
 			int aptCode = house.getAptCode();
 			String lat = house.getLat();
 			String lng = house.getLng();
 			
 			Interest interest = new Interest(id,aptCode,aptName,sidoCode,sidoName,gugunCode,gugunName,dongCode,dongName,lat,lng);
-			System.out.println(interest.toString());
 			interestservice.insert(interest);
 		}
 		return "redirect:/index";
@@ -116,14 +114,21 @@ public class HouseController {
 		String gugun = request.getParameter("gugun");
 		String dong = request.getParameter("dong");
 		
-		System.out.println(sido +" "+ gugun +" "+ dong);
+		Criteria cri = new Criteria();
 		
 		// 시도 입력 
 		if (!sido.equals(""))
 			sido = addressService.Code2Name_Sido(sido).getSidoName();
 		else {
-			houses = houseService.searchAll();
+			houses = houseService.searchAll(cri);
+			int total = houseService.getTotal_All();
+			System.out.println("total...................."+total);
+			PageMaker pagemaker = new PageMaker(cri, total);
+			
+			System.out.println("pageMaker...................."+pagemaker.toString());
+			
 			request.setAttribute("houses", houses);
+			request.setAttribute("pagemaker", pagemaker);
 			return "house/list";
 		}
 		
@@ -138,7 +143,7 @@ public class HouseController {
 		if (!gugun.equals(""))
 			gugun = addressService.Code2Name_Gugun(gugun).getGugunName();
 		else {
-			houses = houseService.searchSido(sido);
+			houses = houseService.searchSido(sido, cri);
 			request.setAttribute("houses", houses);
 			return "house/list";
 		}
@@ -147,12 +152,12 @@ public class HouseController {
 		if (!dong.equals(""))
 			dong = addressService.Code2Name_Dong(dong).getDongName();
 		else {
-			houses = houseService.searchGugun(sido, gugun);
+			houses = houseService.searchGugun(sido, gugun, cri);
 			request.setAttribute("houses", houses);
 			return "house/list";
 		}
 		
-		houses = houseService.searchDong(sido, gugun, dong);
+		houses = houseService.searchDong(sido, gugun, dong, cri);
 		if (houses.size() == 0) {
 			request.setAttribute("sido", sido+' '+gugun+' '+dong);
 			return "house/nothing";
@@ -161,6 +166,7 @@ public class HouseController {
 			return "house/list";
 		}
 	}
+	
 	
 	// 아파트 이름 검색 - complete
 	@GetMapping("/searchAptForm")
@@ -171,7 +177,10 @@ public class HouseController {
 	@GetMapping("/searchApt")
 	private String searchApt(HttpServletRequest request, HttpServletResponse response) {
 		String aptName = request.getParameter("aptName");
-		houses = houseService.searchApt(aptName);
+		
+		Criteria cri = new Criteria();
+		
+		houses = houseService.searchApt(aptName, cri);
 		if (houses.size() == 0)
 			return "house/nothing_apt";
 		request.setAttribute("houses", houses);

@@ -6,6 +6,25 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
+
+<style>
+  .pageInfo{
+      list-style : none;
+      display: inline-block;
+    margin: 50px 0 0 100px;      
+  }
+  .pageInfo li{
+      float: left;
+    font-size: 20px;
+    margin-left: 18px;
+    padding: 7px;
+    font-weight: 500;
+  }
+ a:link {color:black; text-decoration: none;}
+ a:visited {color:black; text-decoration: none;}
+ a:hover {color:black; text-decoration: underline;}
+</style>
+
 </head>
 <body>
 	<div class="container p-4">
@@ -125,8 +144,49 @@
 					<th>관심지역 설정</th>
 				</tr>
 			</tfoot>
-
 		</table>
+
+
+		<div class="pageInfo_wrap">
+			<div class="pageInfo_area">
+				<ul id="pageInfo" class="pageInfo">
+					<!-- 이전페이지 버튼 -->
+					<c:if test="${pagemaker.prev}">
+						<li class="pageInfo_btn previous"><a
+							href="${pagemaker.startPage-1}">Previous</a></li>
+					</c:if>
+
+					<c:forEach var="num" begin="${pagemaker.startPage}"
+						end="${pagemaker.endPage}">
+						<li class="pageInfo_btn"><a href="${num}">${num}</a></li>
+					</c:forEach>
+					
+					<!-- 다음페이지 버튼 -->
+					<c:if test="${pagemaker.next}">
+						<li class="pageInfo_btn next"><a
+							href="${pagemaker.endPage + 1 }">Next</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+
+
+		<form id="moveForm" method="get">
+			<input type="hidden" name="pageNum" value=${pagemaker.cri.pageNum }>
+        	<input type="hidden" name="amount" value=${pagemaker.cri.amount }>
+		</form>
+		
+ 		<script type="text/javascript">
+		    $(".pageInfo a").on("click", function(e){
+
+		        e.preventDefault();
+		        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		        moveForm.attr("action", "/board/list");
+		        moveForm.submit();
+		        
+		    });
+		</script>
+		
 	</div>
 	<%-- 출력 내용 --%>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

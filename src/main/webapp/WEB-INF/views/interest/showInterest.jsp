@@ -403,6 +403,6 @@
 				</script>
 		</div>
 		<%-- 카카오 지도 --%>
-		<h4 class="text-center mt-3 mb-3" style="font-family: Open Sans"></h4>
+		<h4 class="text-center mt-3 mb-3" style="font-family: Open Sans">dhksfy</h4>
 	</div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

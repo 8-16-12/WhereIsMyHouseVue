@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssafy.dto.Criteria;
 import com.ssafy.dto.House;
 import com.ssafy.model.dao.HouseDao;
 
@@ -34,23 +35,59 @@ public class HouseServiceImp implements HouseService {
 	}
 
 	@Transactional
-	public List<House> searchAll() {
-		return dao.searchAll();
+	public List<House> searchAll(Criteria cri) {
+		Map<String,String> map = new HashMap<>();
+		map.put("start", Integer.toString(cri.getSkip()));
+		map.put("len", Integer.toString(cri.getAmount()));
+		return dao.searchAll(map);
 	}
-
-	@Transactional
-	public List<House> searchApt(String aptName) {
-		return dao.searchApt(aptName);
-	}
-
 	
 	@Transactional
-	public List<House> searchDong(String sidoName, String gugunName, String dongName){
+	public List<House> searchSido(String sidoName, Criteria cri) {
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		map.put("start", Integer.toString(cri.getSkip()));
+		map.put("len", Integer.toString(cri.getAmount()));
+		return dao.searchSido(map);
+	}
+
+	@Transactional
+	public List<House> searchGugun(String sidoName, String gugunName, Criteria cri) {
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		map.put("gugunName",gugunName);
+		map.put("start", Integer.toString(cri.getSkip()));
+		map.put("len", Integer.toString(cri.getAmount()));
+		return dao.searchGugun(map);
+	}
+
+	@Transactional
+	public List<House> searchDong(String sidoName, String gugunName, String dongName, Criteria cri){
 		Map<String,String> map = new HashMap<>();
 		map.put("sidoName",sidoName);
 		map.put("gugunName",gugunName);
 		map.put("dongName",dongName);
+		map.put("start", Integer.toString(cri.getSkip()));
+		map.put("len", Integer.toString(cri.getAmount()));
 		return dao.searchDong(map);
+	}
+	
+	@Transactional
+	public List<House> searchApt(String aptName, Criteria cri) {
+		Map<String,String> map = new HashMap<>();
+		map.put("aptName", aptName);
+		map.put("start", Integer.toString(cri.getSkip()));
+		map.put("len", Integer.toString(cri.getAmount()));
+		return dao.searchApt(map);
+	}
+	
+	@Transactional
+	public List<House> searchInterest(String aptName) {
+		Map<String,String> map = new HashMap<>();
+		map.put("aptName", aptName);
+		map.put("start", "0");
+		map.put("len", "1");
+		return dao.searchApt(map);
 	}
 
 	/*
@@ -64,22 +101,9 @@ public class HouseServiceImp implements HouseService {
 	public String aptName2DongCode(String aptName) {
 		return dao.aptName2DongCode(aptName);
 	}
-
-	@Override
-	public List<House> searchGugun(String sidoName, String gugunName) {
-		Map<String,String> map = new HashMap<>();
-		map.put("sidoName",sidoName);
-		map.put("gugunName",gugunName);
-		return dao.searchGugun(map);
-	}
-
-	@Override
-	public List<House> searchSido(String sidoName) {
-		Map<String,String> map = new HashMap<>();
-		map.put("sidoName",sidoName);
-		return dao.searchSido(map);
-	}
-
 	
-
+	@Transactional
+	public int getTotal_All() {
+		return dao.getTotal_All();
+	}
 }

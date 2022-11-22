@@ -4,11 +4,12 @@
 
 <mapper namespace="com.ssafy.model.dao.HouseDao">
 	
-	<select id="searchApt"			parameterType="string"  	resultType="House">
+	<select id="searchApt"			parameterType="map"  	resultType="House">
 		select * from housedeal join 
 		(select aptCode, aptName, sidoName, gugunName, houseinfo.dongName, 
 		houseinfo.jibun, houseinfo.lat, houseinfo.buildYear, houseinfo.lng, img FROM houseinfo join baseaddress
 		using(dongCode) where aptName LIKE #{aptName}) info using(aptCode) order by no desc
+		limit ${start}, ${len}
 	</select>
 	
 	
@@ -18,6 +19,7 @@
 										FROM houseinfo join baseaddress using(dongCode)
 									where sidoName LIKE #{sidoName} and gugunName LIKE #{gugunName} and houseinfo.dongName LIKE #{dongName})
 									info USING(aptCode)
+									limit ${start}, ${len}
 	</select>
 	
 	
@@ -27,6 +29,7 @@
 										FROM houseinfo join baseaddress using(dongCode)
 									where sidoName LIKE #{sidoName} and gugunName LIKE #{gugunName})
 									info USING(aptCode)
+									limit ${start}, ${len}
 	</select>
 	
 	
@@ -36,9 +39,22 @@
 										FROM houseinfo join baseaddress using(dongCode)
 									where sidoName LIKE #{sidoName})
 									info USING(aptCode)
+									limit ${start}, ${len}
 	</select>
 	
+	
 	<select id="searchAll" parameterType="map" resultType="House">
-		select * from housedeal
+		select * from housedeal join 
+		(select aptCode, aptName, sidoName, gugunName, houseinfo.dongName, 
+		houseinfo.jibun, houseinfo.lat, houseinfo.buildYear, houseinfo.lng, img FROM houseinfo join baseaddress
+		using(dongCode)) info using(aptCode) order by no desc
+		limit ${start}, ${len}
+	</select>
+	
+	<select id="getTotal_All" resultType="int">
+		select count(*) from housedeal join 
+		(select aptCode, aptName, sidoName, gugunName, houseinfo.dongName, 
+		houseinfo.jibun, houseinfo.lat, houseinfo.buildYear, houseinfo.lng, img FROM houseinfo join baseaddress
+		using(dongCode)) info using(aptCode) order by no desc
 	</select>
 </mapper>
