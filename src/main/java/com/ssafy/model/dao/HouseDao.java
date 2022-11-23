@@ -22,6 +22,10 @@ public interface HouseDao {
 	String aptName2DongCode(String aptName);
 	
 	int getTotal_All();
+	int getTotal_Apt(Map<String, String> map);
+	int getTotal_Dong(Map<String, String> map);
+	int getTotal_Gugun(Map<String, String> map);
+	int getTotal_Sido(Map<String, String> map);
 	
 	//void remove(int no) throws SQLException;
 }

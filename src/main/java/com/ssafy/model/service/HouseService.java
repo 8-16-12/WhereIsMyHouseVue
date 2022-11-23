@@ -11,14 +11,19 @@ public interface HouseService {
 	//void update(House house) throws SQLException;
 	House search(int no);
 	
+	List<House> searchInterest(String aptName);
+	
 	List<House> searchAll(Criteria cri);
 	List<House> searchApt(String aptName, Criteria cri);
-	List<House> searchInterest(String aptName);
 	List<House> searchDong(String sidoName, String gugunName, String dongName, Criteria cri);
 	List<House> searchGugun(String sidoName, String gugunName, Criteria cri);
 	List<House> searchSido(String sidoName, Criteria cri);
 	
 	int getTotal_All();
+	int getTotal_Apt(String aptName);
+	int getTotal_Dong(String sidoName, String gugunName, String dongName);
+	int getTotal_Gugun(String sidoName, String gugunName);
+	int getTotal_Sido(String sidoName);
 	
 	String aptName2DongCode(String aptName);
 	//void remove(int no) throws SQLException;

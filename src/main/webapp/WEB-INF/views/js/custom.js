@@ -108,7 +108,7 @@
             }
         });
 	
-
+       
 
 	$('.post-slide').slick({
 		fade: true,
@@ -139,5 +139,60 @@
 			$('.scroll-to-top').fadeOut();
 		}
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	/*--------------------- 1123-1045 추가 -------------------------------*/
+    $(".pageInfo a").on("click", function(e){
+
+        e.preventDefault();
+        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+        moveForm.attr("action", "/house/searchApt");
+        moveForm.submit();
+        
+
+        let moveForm = $("#moveForm");
+    	$(".move").on("click", function(e){
+    		e.preventDefault();
+    		
+    		moveForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
+    		moveForm.attr("action", "/board/get");
+    		moveForm.submit();
+    	});
+    	$(".pageInfo a").on("click", function(e){
+    		e.preventDefault();
+    		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+    		moveForm.attr("action", "/board/list");
+    		moveForm.submit();
+    		
+    	});	
+    	
+    	
+    	$(".search_area button").on("click", function(e){
+    		e.preventDefault();
+    		
+    		let type = $(".search_area select").val();
+    		let keyword = $(".search_area input[name='keyword']").val();
+    		
+    		if(!type){
+    			alert("검색 종류를 선택하세요.");
+    			return false;
+    		}
+    		
+    		if(!keyword){
+    			alert("키워드를 입력하세요.");
+    			return false;
+    		}		
+    		
+    		moveForm.find("input[name='type']").val(type);
+    		moveForm.find("input[name='keyword']").val(keyword);
+    		moveForm.find("input[name='pageNum']").val(1);
+    		moveForm.submit();
+    	});
 
 })(jQuery);

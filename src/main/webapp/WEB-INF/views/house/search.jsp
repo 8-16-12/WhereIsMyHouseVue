@@ -37,9 +37,9 @@
 								</select>
 							</div>
 							<div class="form-group col-md-3">
-								<button type="button" id="list-btn"
-									class="btn btn-primary" style="width: 100%">
-									매매 정보 확인</button>
+								<button type="button" id="list-btn" class="btn btn-primary" style="width: 100%">
+									매매 정보 확인
+								</button>
 							</div>
 						</div>
 					</form>
@@ -54,7 +54,7 @@
 								<input type="text" name="aptName" class="form-control" placeholder="아파트 이름을 입력하세요.">
 							</div>
 							<div class="form-group col-md-2">
-								<button type="submit" class="btn btn-primary" style="width: 100%">아파트별 조회</button>
+								<button type="submit" id="list-btn-2" class="btn btn-primary" style="width: 100%">아파트별 조회</button>
 							</div>
 						</div>
 					</form>
@@ -165,6 +165,43 @@
 	        document.querySelector("#list-btn").addEventListener("click", function () {
 				let form = document.querySelector("#form-deal");
                 form.setAttribute("action", "${root}/house/searchDong");
+                var input   = document.createElement('input');
+                var input2   = document.createElement('input');
+
+                input.type   = 'hidden';
+                input.name  = 'pageNum';
+                input.value  = 1;
+                
+                input2.type   = 'hidden';
+                input2.name  = 'amount';
+                input2.value  = 10;
+
+                form.appendChild(input);
+                form.appendChild(input2);
+                form.submit();
+	        });
+	        
+ 	        document.querySelector("#list-btn-2").addEventListener("click", function () {
+ 	        	
+				let form = document.querySelector("#form-deal-2");
+                form.setAttribute("action", "${root}/house/searchApt");
+                var input   = document.createElement('input');
+                var input2   = document.createElement('input');
+
+                input.type   = 'hidden';
+                input.name  = 'pageNum';
+                input.value  = 1;
+                
+                input2.type   = 'hidden';
+                input2.name  = 'amount';
+                input2.value  = 10;
+
+                form.appendChild(input);
+                form.appendChild(input2);
+                
+                
+                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                
                 form.submit();
 	        });
 	        

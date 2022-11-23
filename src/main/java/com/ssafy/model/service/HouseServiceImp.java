@@ -106,4 +106,35 @@ public class HouseServiceImp implements HouseService {
 	public int getTotal_All() {
 		return dao.getTotal_All();
 	}
+
+	@Transactional
+	public int getTotal_Apt(String aptName) {
+		Map<String,String> map = new HashMap<>();
+		map.put("aptName", aptName);
+		return dao.getTotal_Apt(map);
+	}
+
+	@Transactional
+	public int getTotal_Dong(String sidoName, String gugunName, String dongName) {
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		map.put("gugunName",gugunName);
+		map.put("dongName",dongName);
+		return dao.getTotal_Dong(map);
+	}
+
+	@Transactional
+	public int getTotal_Gugun(String sidoName, String gugunName) {
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		map.put("gugunName",gugunName);
+		return dao.getTotal_Gugun(map);
+	}
+
+	@Transactional
+	public int getTotal_Sido(String sidoName) {
+		Map<String,String> map = new HashMap<>();
+		map.put("sidoName",sidoName);
+		return dao.getTotal_Sido(map);
+	}
 }

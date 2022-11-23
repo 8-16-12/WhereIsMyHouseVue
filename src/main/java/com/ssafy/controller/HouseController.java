@@ -114,55 +114,86 @@ public class HouseController {
 		String gugun = request.getParameter("gugun");
 		String dong = request.getParameter("dong");
 		
-		Criteria cri = new Criteria();
+		String pageNum = request.getParameter("pageNum");
+		String amount = request.getParameter("amount");
 		
+		Criteria cri = new Criteria();
+		cri.setPageNum(Integer.parseInt(pageNum));
+		cri.setAmount(Integer.parseInt(amount));
+		
+		String sidoName, gugunName, dongName;
 		// 시도 입력 
 		if (!sido.equals(""))
-			sido = addressService.Code2Name_Sido(sido).getSidoName();
+			sidoName = addressService.Code2Name_Sido(sido).getSidoName();
 		else {
 			houses = houseService.searchAll(cri);
+			
 			int total = houseService.getTotal_All();
-			System.out.println("total...................."+total);
 			PageMaker pagemaker = new PageMaker(cri, total);
 			
-			System.out.println("pageMaker...................."+pagemaker.toString());
-			
 			request.setAttribute("houses", houses);
+			request.setAttribute("sido", sido);
+			request.setAttribute("gugun", gugun);
+			request.setAttribute("dong", dong);
+			System.out.println(sido +" "+ gugun +" "+ dong);
 			request.setAttribute("pagemaker", pagemaker);
 			return "house/list";
 		}
 		
 		//......................... 서울이 아닐 경우
-		if(!sido.equals("서울특별시")) {
-			System.out.printf("NOT SEOUL.............!!!!!!" + sido );
-			request.setAttribute("sido", sido);
+		if(!sidoName.equals("서울특별시")) {
+			System.out.printf("NOT SEOUL.............!!!!!!" + sidoName );
+			request.setAttribute("sido", sidoName);
 			return "house/nothing";
 		}
 
 		// 구군 입력 
 		if (!gugun.equals(""))
-			gugun = addressService.Code2Name_Gugun(gugun).getGugunName();
+			gugunName = addressService.Code2Name_Gugun(gugun).getGugunName();
 		else {
-			houses = houseService.searchSido(sido, cri);
+			houses = houseService.searchSido(sidoName, cri);
+			int total = houseService.getTotal_Sido(sidoName);
+
+			PageMaker pagemaker = new PageMaker(cri, total);
+			
 			request.setAttribute("houses", houses);
+			request.setAttribute("sido", sido);
+			request.setAttribute("gugun", gugun);
+			request.setAttribute("dong", dong);
+			request.setAttribute("pagemaker", pagemaker);
 			return "house/list";
 		}
 		
 		// 동 입력
 		if (!dong.equals(""))
-			dong = addressService.Code2Name_Dong(dong).getDongName();
+			dongName = addressService.Code2Name_Dong(dong).getDongName();
 		else {
-			houses = houseService.searchGugun(sido, gugun, cri);
+			houses = houseService.searchGugun(sidoName, gugunName, cri);
+			int total = houseService.getTotal_Gugun(sidoName, gugunName);
+
+			PageMaker pagemaker = new PageMaker(cri, total);
+			
 			request.setAttribute("houses", houses);
+			request.setAttribute("sido", sido);
+			request.setAttribute("gugun", gugun);
+			request.setAttribute("dong", dong);
+			request.setAttribute("pagemaker", pagemaker);
 			return "house/list";
 		}
 		
-		houses = houseService.searchDong(sido, gugun, dong, cri);
+		houses = houseService.searchDong(sidoName, gugunName, dongName, cri);
+		int total = houseService.getTotal_Dong(sidoName, gugunName, dongName);
+
+		PageMaker pagemaker = new PageMaker(cri, total);
 		if (houses.size() == 0) {
-			request.setAttribute("sido", sido+' '+gugun+' '+dong);
+			request.setAttribute("sido", sidoName+' '+gugunName+' '+dongName);
 			return "house/nothing";
 		} else {
 			request.setAttribute("houses", houses);
+			request.setAttribute("sido", sido);
+			request.setAttribute("gugun", gugun);
+			request.setAttribute("dong", dong);
+			request.setAttribute("pagemaker", pagemaker);
 			return "house/list";
 		}
 	}
@@ -176,14 +207,27 @@ public class HouseController {
 	}
 	@GetMapping("/searchApt")
 	private String searchApt(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Im here............!!!!!!!!");
+		
 		String aptName = request.getParameter("aptName");
 		
+		String pageNum = request.getParameter("pageNum");
+		String amount = request.getParameter("amount");
+		
 		Criteria cri = new Criteria();
+		cri.setPageNum(Integer.parseInt(pageNum));
+		cri.setAmount(Integer.parseInt(amount));
 		
 		houses = houseService.searchApt(aptName, cri);
+		int total = houseService.getTotal_Apt(aptName);
+
+		PageMaker pagemaker = new PageMaker(cri, total);
+		
 		if (houses.size() == 0)
 			return "house/nothing_apt";
 		request.setAttribute("houses", houses);
-		return "house/list";
+		request.setAttribute("aptName", aptName);
+		request.setAttribute("pagemaker", pagemaker);
+		return "house/list2";
 	}
 }

@@ -153,6 +153,19 @@
 	        document.querySelector("#list-btn").addEventListener("click", function () {
 				let form = document.querySelector("#form-deal");
                 form.setAttribute("action", "${root}/house/searchDong");
+                var input   = document.createElement('input');
+                var input2   = document.createElement('input');
+
+                input.type   = 'hidden';
+                input.name  = 'pageNum';
+                input.value  = 1;
+                
+                input2.type   = 'hidden';
+                input2.name  = 'amount';
+                input2.value  = 10;
+
+                form.appendChild(input);
+                form.appendChild(input2);
                 form.submit();
 	        });
         </script> 
