@@ -88,10 +88,12 @@
                       			<c:when test="${userinfo.id eq 'admin'}">
 		                      		<li class="nav-item"><a href="${root}/anotice" class="nav-link">공지사항</a></li>
 		                      		<li class="nav-item"><a href="${root}/aqna" class="nav-link">qna</a></li>
+		                      		<li class="nav-item"><a href="${root}/chat" class="nav-link">채팅</a></li>
 		                      	</c:when>
 		                      	<c:otherwise>
 		                      		<li class="nav-item"><a href="${root}/notice" class="nav-link">공지사항</a></li>
 		                      		<li class="nav-item"><a href="${root}/qna?id=${userinfo.id}" class="nav-link">qna</a></li>
+		                      		<li class="nav-item"><a href="${root}/chat" class="nav-link">채팅</a></li>
 		                      	</c:otherwise>
                       		</c:choose>
                       	</c:when>
