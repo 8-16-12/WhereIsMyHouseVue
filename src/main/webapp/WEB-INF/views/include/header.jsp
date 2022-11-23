@@ -115,13 +115,9 @@
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          	 내 관심사
                           </a>
-                          <c:choose>
-                      		<c:when test="${userinfo.id eq 'admin'}">
-	                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                            <a class="dropdown-item" href="${root}/interest/dropdownInterest?id=${userinfo.id}">관심지역 둘러보기</a>
-	                          </div>
-	                         </c:when>
-	                        </c:choose>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="${root}/interest/dropdownInterest?id=${userinfo.id}">관심지역 둘러보기</a>
+                          </div>
                       </li>
                   	</ul>
                   	<ul class="row justify-content-center">
