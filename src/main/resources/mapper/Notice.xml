@@ -14,7 +14,7 @@
 			</choose>
 		</if>
 	</sql>
-	
+    
 	<select id="searchAll"			parameterType="PageBean"	resultType="Notice">
 		select * from notice
 		<where>

@@ -16,4 +16,19 @@ public class MainController {
 	public String qna() {
 		return "qna";
 	}
+	
+	@GetMapping({"/notice"})
+	public String notice() {
+		return "notice";
+	}
+	
+	@GetMapping({"/aqna"})
+	public String aqna() {
+		return "aqna";
+	}
+	
+	@GetMapping({"/anotice"})
+	public String anotice() {
+		return "anotice";
+	}
 }

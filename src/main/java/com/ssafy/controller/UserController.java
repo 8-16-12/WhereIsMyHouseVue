@@ -84,6 +84,9 @@ public class UserController {
 				session.setAttribute("userinfo", kakao);			
 				System.out.println("카카오 원래 로그인 성공");
 			}
+			
+			System.out.println("세션");
+			System.out.println(session.getAttribute("userinfo"));
 			return "redirect:/index";
 		} else {
 			
@@ -91,15 +94,17 @@ public class UserController {
 			if (login != null && user.getPass().equals(login.getPass())) {
 				
 				session.setAttribute("userinfo", login);			
-				System.out.println(session);
+
 				view = "redirect:/";
 			} else {
 				model.addAttribute("msg", "로그인 실패");
 				view = "redirect:/user/login";
 			}
-			
+			System.out.println("세션");
+			System.out.println(session.getAttribute("userinfo"));
 			return view;
 		}
+		
 	}
 	
 	@GetMapping("/search")

@@ -18,7 +18,7 @@ public class QnaServiceImp implements QnaService {
 	private QnaDao dao;
 		
 	
-	@Transactional(readOnly = true)
+	@Transactional
 	public List<Qna> searchAll(PageBean bean) {
 		int cnt = dao.totalCount(bean);
 		try {

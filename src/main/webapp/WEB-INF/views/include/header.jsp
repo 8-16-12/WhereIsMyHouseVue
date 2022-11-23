@@ -31,7 +31,8 @@
 	      })
 	      Kakao.Auth.setAccessToken(undefined)
 	    }
-	  }  
+	  }
+	console.log("${userinfo.id}");
 </script>
 
 </head>
@@ -78,8 +79,27 @@
                       </li>
 
                       <li class="nav-item"><a href="https://land.naver.com/news/" class="nav-link">부동산 뉴스 (네이버)</a></li>
-                      <li class="nav-item"><a href="${root}/user/notice" class="nav-link">공지사항</a></li>
-                      <li class="nav-item"><a href="${root}/qna" class="nav-link">qna</a></li>
+                      
+                      
+                      
+                      <c:choose>
+                      	<c:when test="${!empty userinfo}">
+                      		<c:choose>
+                      			<c:when test="${userinfo.id eq 'admin'}">
+		                      		<li class="nav-item"><a href="${root}/anotice" class="nav-link">공지사항</a></li>
+		                      		<li class="nav-item"><a href="${root}/aqna" class="nav-link">qna</a></li>
+		                      	</c:when>
+		                      	<c:otherwise>
+		                      		<li class="nav-item"><a href="${root}/notice" class="nav-link">공지사항</a></li>
+		                      		<li class="nav-item"><a href="${root}/qna?id=${userinfo.id}" class="nav-link">qna</a></li>
+		                      	</c:otherwise>
+                      		</c:choose>
+                      	</c:when>
+           				<c:otherwise>
+           					<li class="nav-item" style="width:20px;"></li>
+		                    <li class="nav-item" style="width:20px;"></li>
+           				</c:otherwise>
+                      </c:choose>
 				  </ul>
                   <c:choose>
 					<c:when test="${empty userinfo}">
@@ -95,9 +115,13 @@
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          	 내 관심사
                           </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="${root}/interest/dropdownInterest?id=${userinfo.id}">관심지역 둘러보기</a>
-                          </div>
+                          <c:choose>
+                      		<c:when test="${userinfo.id eq 'admin'}">
+	                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                            <a class="dropdown-item" href="${root}/interest/dropdownInterest?id=${userinfo.id}">관심지역 둘러보기</a>
+	                          </div>
+	                         </c:when>
+	                        </c:choose>
                       </li>
                   	</ul>
                   	<ul class="row justify-content-center">

@@ -71,7 +71,7 @@ public class NoticeRestController {
 	
 	@GetMapping("/notice/{no}")
 	public ResponseEntity<?> search(@PathVariable int no) {
-		logger.debug("QnaController.search....................no:{}", no);
+		logger.debug("NoticeController.search....................no:{}", no);
 		Notice notice = noticeService.search(no);
 		logger.debug("NoticekController.search....................notice:{}", notice);
 		if (notice != null) {
@@ -86,7 +86,7 @@ public class NoticeRestController {
 	public ResponseEntity<String> udpate(@RequestBody Notice notice) {
 		logger.debug("NoticeController.udpate....................no:{}", notice);
 		noticeService.update(notice);
-		logger.debug("QnaController.udpate....................qna:{}", notice);
+		logger.debug("NoticeController.udpate....................qna:{}", notice);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
 	

@@ -20,8 +20,8 @@
 		<where>
 			<include refid="searchcon"/>	
 		</where>
-		order by no
-		limit #{start}, 10
+		order by no desc
+		<!-- limit #{start}, 10 -->
 	</select>
 	
 	<select id='totalCount'			parameterType="PageBean"	resultType="int">
@@ -39,17 +39,25 @@
 	
 	<insert id='insert'				parameterType="Qna">
 		insert into qna(question,userid )
-		values ( #{question}, #{userid})
+		values ( #{question}, #{userid});
+		
+		SET @COUNT = 0;
+		UPDATE qna SET no = @COUNT:=@COUNT+1;
 	</insert>
 	
 	<update id='update'				parameterType="Qna">
-		update qna set answer = #{answer}
+		update qna 
+		set answer = #{answer},
+			status = '답변 완료'
 		where no = #{no}
 	</update>
 	
 	
 	<delete id="delete"				parameterType="int">
-		delete from qna where no = #{no} 
+		delete from qna where no = #{no};
+		
+		SET @COUNT = 0;
+		UPDATE qna SET no = @COUNT:=@COUNT+1; 
 	</delete>
 	
 </mapper>

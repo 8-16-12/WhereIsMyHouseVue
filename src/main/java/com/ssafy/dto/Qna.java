@@ -11,13 +11,14 @@ public class Qna implements Serializable{
 	private int hit;
 	private String registerTime;
 	private String answerTime;
+	private String status;
 	
 	public Qna() {
 		super();
 	}
 
 	public Qna(int no, String question, String userid, String answer, String adminid, int hit, String registerTime,
-			String answerTime) {
+			String answerTime, String status) {
 		super();
 		this.no = no;
 		this.question = question;
@@ -27,6 +28,7 @@ public class Qna implements Serializable{
 		this.hit = hit;
 		this.registerTime = registerTime;
 		this.answerTime = answerTime;
+		this.status = status;
 	}
 
 	public int getNo() {
@@ -92,12 +94,23 @@ public class Qna implements Serializable{
 	public void setAnswerTime(String answerTime) {
 		this.answerTime = answerTime;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "Qna [no=" + no + ", question=" + question + ", userid=" + userid + ", answer=" + answer + ", adminid="
-				+ adminid + ", hit=" + hit + ", registerTime=" + registerTime + ", answerTime=" + answerTime + "]";
+				+ adminid + ", hit=" + hit + ", registerTime=" + registerTime + ", answerTime=" + answerTime
+				+ ", status=" + status + "]";
 	}
+	
+	
 	
 	
 }

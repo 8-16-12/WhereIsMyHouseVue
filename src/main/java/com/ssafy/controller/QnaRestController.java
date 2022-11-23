@@ -59,9 +59,9 @@ public class QnaRestController {
 	@ApiOperation(value = "책 목록 정보", notes = "도서 정보를 검색 조건에 맞게 검색한 결과")
 	@GetMapping("/qna")
 	public ResponseEntity<?> qnaList(PageBean bean) {
-		logger.debug("bookList............................{}", bean);
+		logger.debug("qnaList............................{}", bean);
 		List<Qna> qnas = qnaService.searchAll(bean);
-		logger.debug("bookList............................{}",qnas);
+		logger.debug("qnaList............................{}",qnas);
 		if (qnas!=null && !qnas.isEmpty()) {
 			return new ResponseEntity<List<Qna>>(qnas, HttpStatus.OK);
 		}else {
