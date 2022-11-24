@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ssafy.dto.User;
-import com.ssafy.model.service.MailService;
 import com.ssafy.model.service.UserService;
 
 
@@ -34,8 +33,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private MailService mailService;
 	
 	private static final String SUCCESS = "success";
 	
@@ -145,31 +142,5 @@ public class UserController {
 	@GetMapping("/notice")
 	public void notice() {}
 	
-	@GetMapping("/password")
-	public void passwordForm() {
-		
-	} 
-	
-	@PostMapping("/password")
-	public String password(HttpServletRequest request, Model model) {
-		String id = request.getParameter("id");
-		String email = request.getParameter("email");
-		System.out.println(email);
-		User find = userService.search(id);
-		System.out.println(find.getEmail());
-		logger.debug("User.......................user:{}", find);
-		
-		if(email.equals(find.getEmail())) {
-			String pass = userService.password(find.getEmail());
-			System.out.println(pass);
-			mailService.sendMail(email, pass);
-			model.addAttribute("msg", "비밀번호를 메일로 전송하였습니다");
-			return "redirect:/index";
-		} else {
-			model.addAttribute("msg", "비밀번호 찾기 실패");
-			return "redirect:/";
-		}
-		
-	}
 
 }
