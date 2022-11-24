@@ -69,18 +69,16 @@
                             <a class="dropdown-item" href="${root}/house/searchAptForm">아파트별 조회</a>
                           </div>
                       </li>
-                      <li class="nav-item dropdown">
+<!--                       <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           		지혜롭게 내 집 마련하기
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
 						  <a class="dropdown-item" href="https://ohou.se/store?utm_source=brand_google&utm_medium=cpc&utm_campaign=commerce&utm_content=e&utm_term=%EC%98%A4%EB%8A%98%EC%9D%98%EC%A7%91&source=14&affect_type=UtmUrl&gclid=Cj0KCQjw39uYBhCLARIsAD_SzMQfyGc3HeEd40IOdpO5XnQxaKqE5TekcmCe7T4ei2WuGIPBPAvwIjwaArycEALw_wcB"> 인테리어 공사 (오늘의 집)</a>
                           </div>
-                      </li>
+                      </li> -->
 
                       <li class="nav-item"><a href="https://land.naver.com/news/" class="nav-link">부동산 뉴스 (네이버)</a></li>
-                      
-                      
                       
                       <c:choose>
                       	<c:when test="${!empty userinfo}">
