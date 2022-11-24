@@ -16,6 +16,7 @@ var talk = getId('talk');
 var msg = getId('msg');
 
 btnLogin.onclick = function(){
+	this.disabled = true;
 	ws = new WebSocket("ws://" + location.host + "/chat");
 	
 	ws.onmessage = function(msg){

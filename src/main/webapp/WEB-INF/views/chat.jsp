@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id='chatt'>
-		<h1>WebSocket Chatting</h1>
+		<p>실시간 채팅</p>
 		<input type='text' id='mid' value='홍길동'>
 		<input type='button' value='로그인' id='btnLogin'>
 		<br/>

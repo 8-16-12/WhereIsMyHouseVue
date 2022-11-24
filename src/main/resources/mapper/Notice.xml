@@ -8,8 +8,8 @@
 	<sql id='searchcon'>
 		<if  test="word != null and word !='' ">
 			<choose>
-				<when test=" key =='no'">
-					no = #{word}
+				<when test=" key =='subject'">
+					subject like concat ('%',#{word},'%')
 				</when>
 			</choose>
 		</if>

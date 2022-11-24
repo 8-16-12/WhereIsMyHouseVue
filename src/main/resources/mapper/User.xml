@@ -32,4 +32,9 @@
 		where id = #{id}
 	</delete>
 	
+	<select id="password"	parameterType="string"	resultType="String">
+		SELECT pass from user
+		WHERE email = #{email}
+	</select>
+	
 </mapper>

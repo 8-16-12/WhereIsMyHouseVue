@@ -41,4 +41,10 @@ public class UserServiceImpl implements UserService {
 		dao.delete(id);
 	}
 
+	@Transactional
+	public String password(String email) {
+		System.out.println("비밀번호 찾기이ㅣㅇ이ㅣㅣㅣㅣ");
+		return dao.password(email);
+	}
+
 }

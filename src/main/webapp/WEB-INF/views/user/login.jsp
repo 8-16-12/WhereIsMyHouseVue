@@ -73,6 +73,8 @@
               </label>
             </div>
             <button type="submit" class="btn btn-primary" id="login">로그인</button>
+            <a class="btn btn-primary" href="${root}/user/password" role="button"> 비밀번호 찾기 </a>
+            
             <div class="form-group row">
 				<div class="or-seperator"><b>or</b></div>
 			</div>

@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script defer="defer" src="${root }/js/chunk-vendors.11f423a5.js"></script>
-<script defer="defer" src="${root }/js/app.0ed2f069.js"></script>
+<script defer="defer" src="${root }/js/app.b9e2ed7b.js"></script>
 <link href="${root }/css/chunk-vendors.44332441.css" rel="stylesheet">
-<link href="${root }/css/app.d4faac50.css" rel="stylesheet">
+<link href="${root }/css/app.15a3fd1f.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>

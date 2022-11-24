@@ -175,7 +175,7 @@
 	<div class="container p-4">
 		<%-- 카카오 지도 --%>
 		<div class="container row map_wrap"	style="float: none; margin: 0 auto;">
-			<div id="map" style="width: 1100px; height: 600px;"></div>
+			<div id="map" style="width: 100%; height: 100%;position:relative;"></div>
 			<ul id="category">
 				<li id="BK9" data-order="0"><span class="category_bg bank"></span>
 					은행</li>
@@ -190,7 +190,6 @@
 				<li id="CS2" data-order="5"><span class="category_bg store"></span>
 					편의점</li>
 			</ul>
-
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23658ec81df716d953dc7efcbbbfde05&libraries=services"></script>
 			<script>
@@ -291,13 +290,17 @@
 					// 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
 					var order = document.getElementById(currCategory).getAttribute(
 							'data-order');
+					var listEl = document.getElementById('clist'),
+				      fragment = document.createDocumentFragment();
+					
+					removeAllChildNodes(listEl);
 		
 					for (var i = 0; i < places.length; i++) {
 		
 						// 마커를 생성하고 지도에 표시합니다
 						var marker = addMarker(new kakao.maps.LatLng(places[i].y,
 								places[i].x), order);
-		
+						itemEl = getListItem(i, places[i]);
 						// 마커와 검색결과 항목을 클릭 했을 때
 						// 장소정보를 표출하도록 클릭 이벤트를 등록합니다
 						(function(marker, place) {
@@ -305,9 +308,41 @@
 								displayPlaceInfo(place);
 							});
 						})(marker, places[i]);
+						fragment.appendChild(itemEl);
 					}
+					listEl.appendChild(fragment);
 				}
-		
+				
+				function removeAllChildNodes(el) {   
+				    while (el.hasChildNodes()) {
+				        el.removeChild (el.lastChild);
+				    }
+				}
+				
+				function getListItem(index, places) {
+
+				    var el = document.createElement('li'),
+				    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
+				                '<div class="info d-flex justify-content-center justify-content-around">' +
+				                '   <a href="' + places.place_url + '" target="_blank" title="' + places.place_name + '">' + places.place_name + '</a>';
+
+				    if (places.road_address_name) {
+				        itemStr += '    <span>' + places.road_address_name + '</span>' +
+				                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+				    } else {
+				        itemStr += '    <span>' +  places.address_name  + '</span>'; 
+				    }
+				                 
+				      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+				                '</div>';           
+
+				    el.innerHTML = itemStr;
+				    //el.className = 'item';
+				    el.className = 'list-group-item m-1';
+
+				    return el;
+				}
+				
 				// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 				function addMarker(position, order) {
 					var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
@@ -403,6 +438,10 @@
 				</script>
 		</div>
 		<%-- 카카오 지도 --%>
-		<h4 class="text-center mt-3 mb-3" style="font-family: Open Sans">dhksfy</h4>
+		<h4 class="text-center mt-3 mb-3" style="font-family: Open Sans">상권 리스트</h4>
+		<div style="background-color: lightgray;">
+			
+			<ul class="list-group" id="clist" style="font-size: 1rem;"></ul>               
+		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>

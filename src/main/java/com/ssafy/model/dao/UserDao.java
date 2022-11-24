@@ -10,4 +10,5 @@ public interface UserDao {
 	void update(User user);						// 회원 정보 수정
 	User search(String id);						// 회원 정보 조회
 	void delete(String id);						// 회원 탈퇴
+	String password(String email);
 }

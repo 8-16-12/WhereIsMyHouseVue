@@ -93,7 +93,7 @@
 		                      	<c:otherwise>
 		                      		<li class="nav-item"><a href="${root}/notice" class="nav-link">공지사항</a></li>
 		                      		<li class="nav-item"><a href="${root}/qna?id=${userinfo.id}" class="nav-link">qna</a></li>
-		                      		<li class="nav-item"><a href="${root}/chat" class="nav-link">채팅</a></li>
+		                      		<li class="nav-item"><a href="${root}/chat?" class="nav-link">채팅</a></li>
 		                      	</c:otherwise>
                       		</c:choose>
                       	</c:when>
