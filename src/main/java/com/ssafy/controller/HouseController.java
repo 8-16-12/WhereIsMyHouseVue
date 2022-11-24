@@ -8,26 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ssafy.dto.Criteria;
 import com.ssafy.dto.House;
 import com.ssafy.dto.Interest;
-import com.ssafy.dto.PageBean;
 import com.ssafy.dto.PageMaker;
 import com.ssafy.model.service.AddressService;
 import com.ssafy.model.service.HouseService;
 import com.ssafy.model.service.InterestService;
-
-import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/house")

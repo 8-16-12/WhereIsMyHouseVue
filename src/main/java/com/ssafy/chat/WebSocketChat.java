@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 @ServerEndpoint("/chat")
 public class WebSocketChat {
-	private static Set<Session> clients = 
-			Collections.synchronizedSet(new HashSet<Session>());
-
+	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 	
 	@OnOpen
 	public void onOpen(Session s) {
@@ -27,7 +25,7 @@ public class WebSocketChat {
 			System.out.println("session open : " + s);
 		}else {
 			System.out.println("이미 연결된 session 임!!!");
-		}
+		} 
 	}
 	
 	
@@ -37,10 +35,9 @@ public class WebSocketChat {
 		for(Session s : clients) {
 			System.out.println("send data : " + msg);
 			s.getBasicRemote().sendText(msg);
-
 		}
-		
 	}
+	
 	
 	@OnClose
 	public void onClose(Session s) {

@@ -5,6 +5,9 @@
 <head>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 </head>
+<style>
+	img { display: block; margin: 0px auto; }
+</style>
 <body>
 	<div class="container p-4">
 

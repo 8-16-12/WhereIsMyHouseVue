@@ -16,6 +16,7 @@ var talk = getId('talk');
 var msg = getId('msg');
 
 btnLogin.onclick = function(){
+	this.disabled = true;
 	ws = new WebSocket("ws://" + location.host + "/chat");
 	
 	ws.onmessage = function(msg){
@@ -45,11 +46,13 @@ msg.onkeyup = function(ev){
 }
 
 btnSend.onclick = function(){
+	console.log("뭔말이야22");
 	send();
 }
 
 function send(){
 	if(msg.value.trim() != ''){
+		console.log("뭔말이야");
 		data.mid = getId('mid').value;
 		data.msg = msg.value;
 		data.date = new Date().toLocaleString();
